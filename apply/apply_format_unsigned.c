@@ -6,9 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:17:18 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 18:12:02 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:46:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
+
+//you haven't understood this yet.
 
 int apply_format_unsigned(unsigned int n, t_format f, t_buffer *buf)
 {

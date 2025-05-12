@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_percent_format.c                               :+:      :+:    :+:   */
+/*   itoa_buf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 21:43:21 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 22:56:21 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/12 20:50:25 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/12 20:50:39 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	put_percent_format(t_format f, t_buffer *buf)
+int	ft_itoa_buf(char *buf, int n)
 {
-	int		count;
-	char 	padding;
+	unsigned	int	num;
+	int				buf_index;
 
-	count = 0;
-	paddig = (f.flag_zero && !f.flag_minus) ? '0' : ' ';
-	if (!f.flag_minus)
-		count += put_nchar_buf(padding, f.width - 1, buf);
-	buffer_write_char(buf, "%");
-	count++;
-	if (f.flag_minus)
-		count += put_nchar_buf(' ', f.width - 1, buf);
-	return (count);
+	i = 11;
+	buf[buf_index--] = '\0';
+	if (n == 0)
+	{
+		buf[buf_index--] = '0';
+		return (1);
+	}
+	num = (n < 0) ? -((unsigned int)n) : (unsigned int)n;
+	while (num > 0)
+	{
+		buf[buf_index--] = '0' + (num % 10);
+		num /= 10;
+	}
+	return (11 - buf_index -1);
 }

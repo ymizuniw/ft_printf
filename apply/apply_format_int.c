@@ -6,9 +6,12 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:09:23 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 17:16:56 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/12 20:48:54 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
+//you haven't understood this yet.
 
 int	apply_format_int(int n, t_format f, t_buffer *buf)
 {
