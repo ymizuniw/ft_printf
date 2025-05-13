@@ -6,28 +6,32 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:43:17 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:16:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 03:57:36 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	utoa_base_buf(char *buf, unsigned long n, const char *base)
+int	utoa_base_buf(char *buf, unsigned long value, const char *base)
 {
-	int	base_len;
-	int	buf_index;
+	char	reversed[18];
+	int		base_len;
+	int		i;
+	int		j;
 
 	base_len = ft_strlen(base);
-	buf_index = 17;
-	if (n == 0)
+	i = 0;
+	if (value == 0)
+		reversed[i++] = base[0];
+	while (value > 0)
 	{
-		buf[buf_index--] = base[0];
-		return (1);
+		reversed[i++] = base[value % base_len];
+		value /= base_len;
 	}
-	while (n > 0)
-	{
-		buf[buf_index--] = base[n % base_len];
-		n /= base_len;
-	}
-	return (17 - buf_index - 1);
+	j = 0;
+	while (i--)
+		buf[j++] = reversed[i];
+	buf[j] = '\0';
+	return (j);
 }
+// //!buf, !base.

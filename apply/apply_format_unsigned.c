@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:17:18 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:01:18 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 04:05:04 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	apply_format_unsigned(unsigned int n, t_format f, t_buffer *buf)
 		count += put_nchar_buf(' ', f.width - get_precision_or_len(f.precision, len), buf);
 	if (f.precision_on && f.precision > len)
 		count += put_nchar_buf('0', f.precision - len, buf);
-	buffer_write(buf, num + (10 - len), len);
+	buffer_write(buf, num , len);
 	count += len;
 	if (f.flag_minus && f.width > count)
 		count += put_nchar_buf(' ', f.width - count, buf);

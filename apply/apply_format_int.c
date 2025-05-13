@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:09:23 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:01:09 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 04:04:40 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	apply_format_int(int n, t_format f, t_buffer *buf)
 	count += print_prefix(n, f, buf);
 	if (f.precision_on && f.precision > len)
 		count += put_nchar_buf('0', f.precision - len, buf);
-	buffer_write(buf, num + (11 - len), len);
+	buffer_write(buf, num, len);
 	count += len;
 	if (f.flag_minus && f.width > count)
 		count += put_nchar_buf(' ', f.width - count, buf);

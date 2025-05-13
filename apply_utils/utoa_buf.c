@@ -6,27 +6,36 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:17:33 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:19:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 03:55:40 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	utoa_buf(char *buf, unsigned int n)
+int	utoa_buf(char *buf, unsigned int value)
 {
-	int	buf_index;
+	char	digits[11];
+	int		write_index;
+	int		read_index;
+	int		digit_count;
 
-	buf_index = 10;
-	if (n == 0)
+	write_index = 10;
+	if (value == 0)
 	{
-		buf[--buf_index] = '0';
+		buf[0] = '0';
+		buf[1] = '\0';
 		return (1);
 	}
-	while (n > 0)
+	while (value > 0)
 	{
-		buf[buf_index--] = '0' + (n % 10);
-		n /= 10;
+		digits[write_index--] = '0' + (value % 10);
+		value /= 10;
 	}
-	return (10 - buf_index);
+	digit_count = 10 - write_index;
+	read_index = 0;
+	while (++write_index < 11)
+		buf[read_index++] = digits[write_index];
+	buf[read_index] = '\0';
+	return (digit_count);
 }
 //! buf, n != unsigned int _, handlings are needed?

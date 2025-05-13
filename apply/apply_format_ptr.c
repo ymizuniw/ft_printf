@@ -6,25 +6,25 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:48:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:12:09 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 04:05:24 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	apply_format_ptr(void *ptr, t_format f, t_buffer *buf)
+int	apply_format_ptr(void *ptr_value, t_format f, t_buffer *buf)
 {
-	char	num[18];
+	char	ptr[19];
 	int		len;
 	int		count;
 
-	len = utoa_base_buf(num, (unsigned long)ptr, "0123456789abcdef");
+	len = utoa_base_buf(ptr, (unsigned long)ptr_value, "0123456789abcdef");
 	count = 0;
 	if (!f.flag_minus && f.width > len + 2)
 		count += put_nchar_buf(' ', f.width - (len + 2), buf);
 	buffer_write(buf, "0x", 2);
 	count += 2;
-	buffer_write(buf, num + (17 - len), len);
+	buffer_write(buf, ptr, len);
 	count += len;
 	if (f.flag_minus && f.width > count)
 		count += put_nchar_buf(' ', f.width - count, buf);

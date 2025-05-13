@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 02:52:36 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:26:51 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 04:05:56 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	apply_format_hex(unsigned int n, t_format f, t_buffer *buf, int upper)
 	if (!f.flag_minus && f.flag_zero && !f.precision_on)
 		count += print_padding_int(f, len, has_prefix * 2, buf);
 	count += buffer_write_prefix(buf, has_prefix, upper);
-	buffer_write(buf, num + (17 - len), len);
+	buffer_write(buf, num, len);
 	count += len;
 	if (f.flag_minus && f.width > count)
 		count += put_nchar_buf(' ', f.width - count, buf);

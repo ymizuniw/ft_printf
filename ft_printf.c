@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:44:16 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 03:26:37 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 04:19:58 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	buffer_output(&buf);
+	free_buffer(&buf);
 	return ((int)buf.total);
 }
