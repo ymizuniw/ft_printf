@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch_format_bonus.c                            :+:      :+:    :+:   */
+/*   dispatch_format.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:44:14 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 13:29:31 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:42:16 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	dispatch_format_bonus(const char *s, va_list args, t_buffer *buf)
+int	dispatch_format(const char *s, va_list args, t_buffer *buf)
 {
 	t_format	f;
 	int			i;

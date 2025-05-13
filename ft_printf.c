@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:44:16 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 15:05:05 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:42:23 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] = '%')
-			i += dispatch_format_bonus(format + i + 1, args, &buf);
+			i += dispatch_format(format + i + 1, args, &buf);
 		else
 			buffer_write_char(&buf, format[i++]);
 	}

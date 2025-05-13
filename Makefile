@@ -6,7 +6,7 @@
 #    By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/13 15:00:41 by ymizuniw          #+#    #+#              #
-#    Updated: 2025/05/13 15:24:31 by ymizuniw         ###   ########.fr        #
+#    Updated: 2025/05/13 16:43:41 by ymizuniw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,5 +25,4 @@ SRC = \
 		format/put_str_format.c \
 		buffer/buffer.c \
 		buffer/put_nchar_buf.c \
-		dispatch/dispatch_format_bonus.c
-
+		dispatch/dispatch_format.c

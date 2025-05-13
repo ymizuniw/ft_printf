@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 14:24:20 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:41:22 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		parse_width(const char *s, int *i, t_format *f, va_list args);
 void		parse_precision(const char *s, int *i, t_format *f, va_list args);
 
 /*dispatcher*/
-int	dispatch_format_bonus(const char *s, va_list args, t_buffer *buf);
+int	dispatch_format(const char *s, va_list args, t_buffer *buf);
 
 /*put*/
 int	put_char_format(char c, t_format f, t_buffer *buf);
