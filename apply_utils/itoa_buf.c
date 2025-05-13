@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itoa_buf_bonus.c                                   :+:      :+:    :+:   */
+/*   itoa_buf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 20:50:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 19:27:30 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 21:13:57 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	ft_itoa_buf(char *buf, int n)
 		buf[buf_index--] = '0';
 		return (1);
 	}
-	num = (n < 0) ? -((unsigned int)n) : (unsigned int)n;
+	if (n < 0)
+		return ((unsigned int)n);
+	else
+		return ((unsigned int)n);
 	while (num > 0)
 	{
 		buf[buf_index--] = '0' + (num % 10);

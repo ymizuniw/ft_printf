@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_percent_format_bonus.c                         :+:      :+:    :+:   */
+/*   put_percent_format.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:43:21 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 19:28:16 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 21:51:25 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static const char	zero_or_space(int flag_zero, int flag_minus)
+{
+	if (f.flag_zero && !f.flag_minus)
+		return ('0');
+	return (' ');
+}
 
 int	put_percent_format(t_format f, t_buffer *buf)
 {
@@ -18,7 +25,7 @@ int	put_percent_format(t_format f, t_buffer *buf)
 	char	padding;
 
 	count = 0;
-	paddig = (f.flag_zero && !f.flag_minus) ? '0' : ' ';
+	paddig = zero_or_space(f.flag_zero, f.flag_minus);
 	if (!f.flag_minus)
 		count += put_nchar_buf(padding, f.width - 1, buf);
 	buffer_write_char(buf, "%");

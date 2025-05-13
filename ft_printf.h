@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 20:33:54 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 21:03:04 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,11 @@ int			apply_format_hex(unsigned int n, t_format f, t_buffer *buf,
 int			apply_format_ptr(void *ptr, t_format f, t_buffer *buf);
 
 /*buffer*/
+void		init_buffer(t_buffer *buf, int capacity);
+void		free_buffer(t_buffer *buf);
 void		buffer_write(t_buffer *buf, const char *s, int len);
 void		buffer_write_char(t_buffer *buf, char c);
 void		buffer_output(t_buffer *buf);
 int			put_nchar_buf(char c, int n, t_buffer *buf);
-
-/*apply utils*/
-int			itoa_buf(char *buf, int n);
-int			utoa_buf(char *buf, unsigned int n);
-int			utoa_base_buf(char *buf, unsigned long n, const char *base);
 
 #endif

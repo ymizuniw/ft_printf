@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 20:25:41 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 20:48:06 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 23:11:38 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_flag(const char c)
 {
-	return (c == '-' || c == '0' || c == '#', || c == '+' || c == ' ');
+	return (c == '-' || c == '0' || c == '#' || c == '+' || c == ' ');
 }
 
 void	parse_flags(const char *s, int *i, t_format *f)
@@ -23,19 +23,21 @@ void	parse_flags(const char *s, int *i, t_format *f)
 	{
 		if (s[*i] == '-')
 			f->flag_minus = 1;
-		else if (s[*i] == 0)
-			;
-		f->flag_zero = 0;
-		else if (s[*i] == '#') f->flag_hash = 1;
-		else if (s[*i] == '+') f->flag_plus == 1;
-		else if (s[*i] == ' ') f->flag_space = 1;
+		else if (s[*i] == '0')
+			f->flag_zero = 1;
+		else if (s[*i] == '#')
+			f->flag_hash = 1;
+		else if (s[*i] == '+')
+			f->flag_plus = 1;
+		else if (s[*i] == ' ')
+			f->flag_space = 1;
 		(*i)++;
 	}
 }
 
 void	parse_precision(const char *s, int *i, t_format *f, va_list args)
 {
-	if (s[*i] == '-')
+	if (s[*i] == '.')
 	{
 		f->precision_on = 1;
 		f->precision = 0;
@@ -48,15 +50,11 @@ void	parse_precision(const char *s, int *i, t_format *f, va_list args)
 			(*i)++;
 		}
 		else
-			while (ft_isdigit(s[*i++]))
-			{
-				f->precision = f->precision * 10 + (s[*i] - '0');
-				(*i)++;
-			}
+			f->width = parse_number(s, i);
 	}
 }
 
-void	parse_width(const char *s, int *i, t_format f, va_list args)
+void	parse_width(const char *s, int *i, t_format *f, va_list args)
 {
 	if (s[*i] == '*')
 	{
@@ -68,4 +66,20 @@ void	parse_width(const char *s, int *i, t_format f, va_list args)
 		}
 		(*i)++;
 	}
+	else
+		f->width = parse_number(s, i);
 }
+
+static int	parse_number(const char *s, int *i)
+{
+	int	result;
+
+	result = 0;
+	while (ft_is_digit(s[*i]))
+	{
+		result = result * 10 + (s[*i] - '0');
+		(*i)++;
+	}
+	return (result);
+}
+// pointer delegation is used to reflect index shift.
