@@ -6,9 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:44:14 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 03:21:15 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:29:31 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	dispatch_format_bonus(const char *s, va_list args, t_buffer *buf)
 {

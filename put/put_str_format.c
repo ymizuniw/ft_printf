@@ -6,9 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:32:11 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 21:41:39 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:30:36 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	put_str_format(char *s, t_format f, t_buffer *buf)
 {

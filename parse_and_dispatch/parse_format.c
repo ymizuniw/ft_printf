@@ -6,9 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:40:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 15:51:41 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:29:49 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 t_format	parse_format(const char *s, int *i, va_list args)
 {

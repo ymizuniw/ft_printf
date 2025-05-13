@@ -6,9 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:27:14 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 21:27:17 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:28:45 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 void	buffer_flush(t_buffer *buf)
 {

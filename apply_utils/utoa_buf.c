@@ -6,9 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:17:33 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 18:43:14 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:28:28 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	utoa_buf(char *buf, unsigned int n)
 {
