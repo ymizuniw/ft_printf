@@ -6,7 +6,7 @@
 #    By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/13 15:00:41 by ymizuniw          #+#    #+#              #
-#    Updated: 2025/05/13 16:43:41 by ymizuniw         ###   ########.fr        #
+#    Updated: 2025/05/13 16:56:24 by ymizuniw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,13 @@ AR		= ar rcs
 RM		= rm -f
 
 INCLUDES	= -Iincludes
-SRC = \
-		ft_printf.c \
-		apply/apply_format_int.c \
-		apply/apply_format_hex.c \
-		format/put_char_format.c \
-		format/put_str_format.c \
-		buffer/buffer.c \
-		buffer/put_nchar_buf.c \
-		dispatch/dispatch_format.c
+MANDATORY_SRC = ft_printf.c \
+				dispatch/dispatch_format.c \
+				format/put_char.c \
+				format/put_str.c \
+				format/put_signed.c \
+				format/put_unsigned.c \
+				format/put_hex_lower.c \
+				format/put_hex_upper.c \
+				format/put_ptr.c \
+				format/put_percent.c \
