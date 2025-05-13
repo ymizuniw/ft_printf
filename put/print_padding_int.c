@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 23:31:38 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:15:53 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:45:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	print_padding_int(t_format f, int len, int has_prefix, t_buffer *buf)
 	int		total_len;
 	int		padding_len;
 	char	padding_char;
-	int		count;
 
 	padding_char = ' ';
 	if (f.flag_zero && !f.flag_minus && !f.precision_on)
@@ -28,6 +27,5 @@ int	print_padding_int(t_format f, int len, int has_prefix, t_buffer *buf)
 	padding_len = f.width - total_len;
 	if (padding_len < 0)
 		padding_len = 0;
-	count = 0;
 	return (put_nchar_buf(padding_char, padding_len, buf));
 }

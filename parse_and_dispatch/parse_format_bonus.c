@@ -6,16 +6,14 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 20:25:41 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:15:45 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:43:18 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static int	is_flag(const char c)
-{
-	return (c == '-' || c == '0' || c == '#' || c == '+' || c == ' ');
-}
+static int	parse_number(const char *s, int *i);
+static int	is_flag(const char c);
 
 void	parse_flags(const char *s, int *i, t_format *f)
 {
@@ -83,3 +81,7 @@ static int	parse_number(const char *s, int *i)
 	return (result);
 }
 // pointer delegation is used to reflect index shift.
+static int	is_flag(const char c)
+{
+	return (c == '-' || c == '0' || c == '#' || c == '+' || c == ' ');
+}
