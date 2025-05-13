@@ -6,20 +6,20 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:15:21 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 23:57:28 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:37:31 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 void	buffer_write(t_buffer *buf, const char *s, int len)
 {
 	int			s_index;
 
 	s_index = 0;
-	while (i < len)
+	while (s_index < len)
 	{
-		if (buf->len == )
+		if (buf->len == buf->capacity)
 			buffer_output(buf);
 		buf->data[buf->len++] = s[s_index++];
 	}
@@ -28,7 +28,7 @@ void	buffer_write(t_buffer *buf, const char *s, int len)
 
 void	buffer_write_char(t_buffer *buf, char c)
 {
-	if (buf->len == capacity)
+	if (buf->len == buf->capacity)
 		buffer_output(buf);
 	buf->data[buf->len++] = c;
 	buf->total++;

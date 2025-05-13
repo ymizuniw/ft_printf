@@ -6,16 +6,16 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:32:11 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 21:54:50 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:16:12 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 static int	padding_len(int width, int len)
 {
-	if (f.width > len)
-		return (f.width - len);
+	if (width > len)
+		return (width - len);
 	return (0);
 }
 

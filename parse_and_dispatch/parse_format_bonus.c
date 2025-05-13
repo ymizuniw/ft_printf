@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 20:25:41 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 23:11:38 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:15:45 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 static int	is_flag(const char c)
 {
@@ -50,7 +50,7 @@ void	parse_precision(const char *s, int *i, t_format *f, va_list args)
 			(*i)++;
 		}
 		else
-			f->width = parse_number(s, i);
+			f->precision = parse_number(s, i);
 	}
 }
 
@@ -75,7 +75,7 @@ static int	parse_number(const char *s, int *i)
 	int	result;
 
 	result = 0;
-	while (ft_is_digit(s[*i]))
+	while (ft_isdigit(s[*i]))
 	{
 		result = result * 10 + (s[*i] - '0');
 		(*i)++;

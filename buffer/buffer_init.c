@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 20:23:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 23:55:44 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:20:44 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 #include <stdlib.h>
 
 int	init_buffer(t_buffer *buf, int capacity)

@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 02:52:36 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 23:35:50 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:26:51 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static	const char	get_hex_prefix(int upper)
+static	char	get_hex_prefix(int upper)
 {
 	if (upper)
 		return ('X');
@@ -34,7 +34,6 @@ static	int	buffer_write_prefix(t_buffer *buf, int has_prefix,
 				int upper)
 {
 	int	add_element;
-	int	is_upper;
 
 	add_element = 0;
 	if (has_prefix)
@@ -55,11 +54,10 @@ int	apply_format_hex(unsigned int n, t_format f, t_buffer *buf, int upper)
 	int			has_prefix;
 
 	base = get_hex_base(upper);
-	len = utoa_buf(num, (unsigned long)n, base);
+	len = utoa_base_buf(num, (unsigned long)n, base);
 	has_prefix = (f.flag_hash && n != 0);
 	if (f.precision_on && f.precision == 0 && n == 0)
 		len = 0;
-	
 	count = 0;
 	if (!f.flag_minus && f.flag_zero && !f.precision_on)
 		count += print_padding_int(f, len, has_prefix * 2, buf);

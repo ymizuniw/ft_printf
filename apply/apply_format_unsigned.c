@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:17:18 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 23:43:31 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:01:18 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 static int	get_precision_or_len(int precision, int len)
 {

@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:43:17 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 23:49:37 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:16:33 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 int	utoa_base_buf(char *buf, unsigned long n, const char *base)
 {
@@ -21,7 +21,7 @@ int	utoa_base_buf(char *buf, unsigned long n, const char *base)
 	buf_index = 17;
 	if (n == 0)
 	{
-		buf[buf_index--] = base[0]
+		buf[buf_index--] = base[0];
 		return (1);
 	}
 	while (n > 0)

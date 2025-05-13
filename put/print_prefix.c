@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 23:23:31 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 13:30:06 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 02:15:58 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 int	print_prefix(int n, t_format f, t_buffer *buf)
 {
