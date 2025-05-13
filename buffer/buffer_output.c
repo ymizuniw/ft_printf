@@ -6,14 +6,15 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:27:14 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:15:21 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 03:17:07 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	buf_output(t_buffer *buf)
+void	buffer_output(t_buffer *buf)
 {
 	write(1, buf->data, buf->len);
+	buf->total += buf->len;
 	buf->len = 0;
 }

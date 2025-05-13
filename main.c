@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itoa_buf.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 20:50:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:52:24 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/14 03:37:31 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/14 03:39:32 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
+#include <stdio.h> // printf との比較用
 
-int	itoa_buf(char *buf, int n)
+#include "ft_printf.h"
+#include <stdio.h>
+
+int	main(void)
 {
-	unsigned int	num;
-	int				buf_index;
+	int	ret1;
+	int	ret2;
 
-	buf_index = 11;
-	if (n == 0)
-	{
-		buf[buf_index--] = '0';
-		return (1);
-	}
-	if (n < 0)
-		num = -((unsigned int)n);
-	else
-		num = (unsigned int)n;
-	while (num > 0)
-	{
-		buf[--buf_index] = '0' + (num % 10);
-		num /= 10;
-	}
-	return (11 - buf_index);
+	ret1 = ft_printf("Hello, %s! Number: %d\n", "world", 42);
+	ret2 = printf("Hello, %s! Number: %d\n", "world", 42);
+
+	ft_printf("ft_printf return: %d\n", ret1);
+	printf("libc     return: %d\n", ret2);
+
+	return (0);
 }

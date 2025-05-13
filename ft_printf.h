@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:21:44 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 03:13:09 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_buffer
 {
 	char	*data;
 	int		len;
-	int		total;
+	size_t	total;
 	int		capacity;
 }			t_buffer;
 

@@ -20,20 +20,40 @@ int	dispatch_format(const char *s, va_list args, t_buffer *buf)
 	i = 0;
 	f = parse_format(s, &i, args);
 	if (f.specifier == 'c')
-		return (put_char_format(va_arg(args, int), f, buf) + i + 1);
+	{
+		put_char_format(va_arg(args, int), f, buf);
+		return (i + 1);
+	}
 	if (f.specifier == 's')
-		return (put_str_format(va_arg(args, char *), f, buf) + i + 1);
+	{
+		put_str_format(va_arg(args, char *), f, buf);
+		return (i + 1);
+	}
 	if (f.specifier == 'd' || f.specifier == 'i')
-		return (apply_format_int(va_arg(args, int), f, buf) + i + 1);
+	{
+		apply_format_int(va_arg(args, int), f, buf);
+		return (i + 1);
+	}
 	if (f.specifier == 'u')
-		return (apply_format_unsigned(va_arg(args, unsigned int), f, buf) + i
-			+ 1);
+	{
+		apply_format_unsigned(va_arg(args, unsigned int), f, buf);
+		return (i + 1);
+	}
 	if (f.specifier == 'x' || f.specifier == 'X')
-		return (apply_format_hex(va_arg(args, unsigned int), f, buf,
-				f.specifier == 'X') + i + 1);
+	{
+		apply_format_hex(va_arg(args, unsigned int), f, buf,
+				f.specifier == 'X');
+		return (i + 1);
+	}
 	if (f.specifier == 'p')
-		return (apply_format_ptr(va_arg(args, void *), f, buf) + i + 1);
+	{
+		apply_format_ptr(va_arg(args, void *), f, buf);
+		return (i + 1);
+	}
 	if (f.specifier == '%')
-		return (put_percent_format(f, buf) + i + 1);
+	{
+		put_percent_format(f, buf);
+		return (i + 1);
+	}
 	return (0);
 }
