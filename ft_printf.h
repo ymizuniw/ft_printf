@@ -6,14 +6,14 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 21:03:04 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 23:22:44 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "/libft/libft.h"
+# include "libft/libft.h"
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>

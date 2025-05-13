@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:44:16 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 21:11:55 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 23:24:20 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_printf(const char *format, ...)
 {
 	va_list		args;
 	t_buffer	buf;
-	int			dispach_len;
 	int			i;
 
 	init_buffer(&buf, PRINTF_CAPACITY);

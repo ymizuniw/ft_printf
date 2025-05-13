@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_format_int_bonus.c                           :+:      :+:    :+:   */
+/*   apply_format_int.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:09:23 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 19:27:22 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 23:38:03 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// you haven't understood this yet.
 
 int	apply_format_int(int n, t_format f, t_buffer *buf)
 {
@@ -26,11 +24,13 @@ int	apply_format_int(int n, t_format f, t_buffer *buf)
 		len = 0;
 	has_prefix = (n < 0 || f.flag_plus || f.flag_space);
 	count = 0;
-	count += print_padding_int(f, len, prefix, buf);
+	count += print_padding_int(f, len, has_prefix ? 1 : 0, buf);
 	count += print_prefix(n, f, buf);
-	count += put_nchar_buf('0', f.precision - len, buf);
-	count += buffer_write(buf, num + (11 - len), len);
-	if (f.flag_minus)
+	if (f.precision_on && f.precision > len)
+		count += put_nchar_buf('0', f.precision - len, buf);
+	buffer_write(buf, num + (11 - len), len);
+	count += len;
+	if (f.flag_minus && f.width > count)
 		count += put_nchar_buf(' ', f.width - count, buf);
 	return (count);
 }

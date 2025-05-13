@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 02:52:36 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 21:42:10 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 23:35:50 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-static	const char	is_upper(int upper)
+static	const char	get_hex_prefix(int upper)
 {
 	if (upper)
 		return ('X');
@@ -31,7 +31,7 @@ static const	char	*get_hex_base(int upper)
 }
 
 static	int	buffer_write_prefix(t_buffer *buf, int has_prefix,
-				int upper, int has_prefix)
+				int upper)
 {
 	int	add_element;
 	int	is_upper;
@@ -40,7 +40,7 @@ static	int	buffer_write_prefix(t_buffer *buf, int has_prefix,
 	if (has_prefix)
 	{
 		buffer_write_char(buf, '0');
-		buffer_write_char(buf, is_upper(upper));
+		buffer_write_char(buf, get_hex_prefix(upper));
 		add_element = 2;
 	}
 	return (add_element);
@@ -59,11 +59,13 @@ int	apply_format_hex(unsigned int n, t_format f, t_buffer *buf, int upper)
 	has_prefix = (f.flag_hash && n != 0);
 	if (f.precision_on && f.precision == 0 && n == 0)
 		len = 0;
+	
 	count = 0;
 	if (!f.flag_minus && f.flag_zero && !f.precision_on)
 		count += print_padding_int(f, len, has_prefix * 2, buf);
-	count = buffer_write_prefix(has_prefix);
-	count += buffer_write(buf, num + (17 - len), len);
+	count += buffer_write_prefix(buf, has_prefix, upper);
+	buffer_write(buf, num + (17 - len), len);
+	count += len;
 	if (f.flag_minus && f.width > count)
 		count += put_nchar_buf(' ', f.width - count, buf);
 	return (count);
