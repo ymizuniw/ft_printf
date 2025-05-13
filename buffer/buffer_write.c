@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_width.c                                      :+:      :+:    :+:   */
+/*   buffer_write_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 14:34:35 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 14:40:49 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/12 21:15:21 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/13 20:06:22 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	parse_width(const char *s, int *i, t_format f, var_list args)
+void	buffer_write(t_buffer *buf, const char *s, int len)
 {
-	if (s[*i] == '*')
+	int			s_index;
+	const int	buf_size;
+
+	buf_size = 1024;
+	i = 0;
+	while (i < len)
 	{
-		f->width = va_arg(args, int);
-		if (f->width < 0)
-		{
-			f->flag_minus = 1;
-			f->width *= -1;
-		}
-		(*i)++;
+		if (buf->len == )
+			buffer_output(buf);
+		buf->data[buf->len++] = s[i++];
 	}
+	buf->total += len;
 }

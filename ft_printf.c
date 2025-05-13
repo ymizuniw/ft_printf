@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:44:16 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 16:42:23 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 19:28:22 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int	len;
+	int		i;
 
 	va_start(args, format);
 	buf.len = 0;
@@ -29,6 +29,6 @@ int	ft_printf(const char *format, ...)
 			buffer_write_char(&buf, format[i++]);
 	}
 	va_end(args);
-	buffer_flush(&buf);
-	return(buf.total);
+	buffer_output(&buf);
+	return (buf.total);
 }

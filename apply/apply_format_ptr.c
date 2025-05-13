@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_percent_format.c                               :+:      :+:    :+:   */
+/*   apply_format_ptr_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 21:43:21 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 22:56:21 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/12 18:48:25 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/13 20:14:56 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	put_percent_format(t_format f, t_buffer *buf)
+int	apply_format_ptr(void *ptr, t_format f, t_buffer *buf)
 {
+	char	num[18];
+	int		len;
 	int		count;
-	char 	padding;
 
+	len = utoa_base_buf(num, (unsigned long)ptr, "0123456789abcdef");
 	count = 0;
-	paddig = (f.flag_zero && !f.flag_minus) ? '0' : ' ';
 	if (!f.flag_minus)
-		count += put_nchar_buf(padding, f.width - 1, buf);
-	buffer_write_char(buf, "%");
-	count++;
+		count += put_nchar_buf(' ', f.width - (len + 2), buf);
+	buffer_write(buf, "0x", 2);
+	count += 2;
+	count += buffer_write(buf, num + (17 - len), len);
 	if (f.flag_minus)
-		count += put_nchar_buf(' ', f.width - 1, buf);
+		count += put_nchar_buf(' ', f.width - count, buf);
 	return (count);
 }

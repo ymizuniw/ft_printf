@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utoa_buf.c                                         :+:      :+:    :+:   */
+/*   parse_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 18:17:33 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 13:28:28 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/12 15:40:19 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/13 19:27:58 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	utoa_buf(char *buf, unsigned int n)
+t_format	parse_format(const char *s, int *i, va_list args)
 {
-	int	buf_index;
+	t_format	f;
 
-	buf_index = 10;
-	buf[buf_index--] = '\0';
-	if (n == 0)
-	{
-		buf[buf_index--] = '\0';
-		return (1);
-	}
-	while (n > 0)
-	{
-		buf[buf_index--] = '\0' + (n % 10);
-		n /= 10;
-	}
-	return (10 - buf_index -1);
+	ft_memset(&f, 0, sizeof(t_format));
+	parse_flags(s, i, &f);           // i -> ?
+	parse_width(s, i, &f, args);     //?
+	parse_precision(s, i, &f, args); //?
+	f.specifier = s[*i];
+	return (f);
 }
-//!buf, n != unsigned int _, handlings are needed?

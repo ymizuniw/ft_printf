@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   buffer_write_char.c                                :+:      :+:    :+:   */
+/*   buffer_flush_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 21:24:20 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 13:28:56 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/12 21:27:14 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/13 18:51:54 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	buffer_write_char(t_buffer *buf, char c)
+void	buf_output(t_buffer *buf)
 {
-	if (buf->len == PRINTF_BUF_SIZE)
-		buffer_flush(buf);
-	buf->data[buf->len++] = c;
-	buf->total++;
+	write(1, buf->data, buf->len);
+	buf->len = 0;
 }

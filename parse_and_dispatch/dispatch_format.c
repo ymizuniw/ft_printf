@@ -23,13 +23,14 @@ int	dispatch_format(const char *s, va_list args, t_buffer *buf)
 		return (put_char_format(va_arg(args, int), f, buf) + i + 1);
 	if (f.specifier == 's')
 		return (put_str_format(va_arg(args, char *), f, buf) + i + 1);
-	if (f.specifier == 'd' || f.specifier == "i")
+	if (f.specifier == 'd' || f.specifier == 'i')
 		return (apply_format_int(va_arg(args, int), f, buf) + i + 1);
 	if (f.specifier == 'u')
-		return (apply_format_unsigned(va_arg(args, unsigned int), f, buf) + i + 1);
+		return (apply_format_unsigned(va_arg(args, unsigned int), f, buf) + i
+			+ 1);
 	if (f.specifier == 'x' || f.specifier == 'X')
 		return (apply_format_hex(va_arg(args, unsigned int), f, buf,
-			f.specifier == 'X') + i + 1);
+				f.specifier == 'X') + i + 1);
 	if (f.specifier == 'p')
 		return (apply_format_ptr(va_arg(args, void *), f, buf) + i + 1);
 	if (f.specifier == '%')

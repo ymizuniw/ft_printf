@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_format_int.c                                 :+:      :+:    :+:   */
+/*   apply_format_int_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:09:23 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 14:52:59 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 19:27:22 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-//you haven't understood this yet.
+
+// you haven't understood this yet.
 
 int	apply_format_int(int n, t_format f, t_buffer *buf)
 {

@@ -6,21 +6,30 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 02:52:36 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/13 13:27:42 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 20:34:56 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static	char  *is_upper_hex(const char *base, int upper)
+{
+	if (upper == 1)
+		base = "0123456789ABCDEF";
+	else if (upper == 0)
+		base = "0123456789abcdef";
+	return (base);
+}
+
 int	apply_format_hex(unsigned int n, t_format f, t_buffer *buf, int upper)
 {
-	char			num[17];
-	const	char	*base;
-	int				len;
-	int				count;
-	int				has_prefix;
+	char		num[17];
+	const char	*base;
+	int			len;
+	int			count;
+	int			has_prefix;
 
-	base = (upper) ? "0123456789ABCDEF" : "0123456789abcdef";
+	base = is_upper_hex(base, upper);
 	len = utoa_buf(num, (unsigned long)n, base);
 	has_prefix = (f.flag_hash && n != 0);
 	if (f.precision_on && f.precision == 0 && n == 0)

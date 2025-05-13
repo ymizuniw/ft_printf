@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_padding_int.c                                :+:      :+:    :+:   */
+/*   print_padding_int_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 23:31:38 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/12 23:32:36 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/13 19:28:09 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	print_padding_int(t_format f, int len, int has_prefix, t_buffer *buf)
 {
-	int 	total_len;
-	int 	padding_len;
+	int		total_len;
+	int		padding_len;
 	char	padding_char;
 	int		count;
 
