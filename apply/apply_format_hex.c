@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 02:52:36 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 04:05:56 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 13:15:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@ static const	char	*get_hex_base(int upper)
 	const char	*base_to;
 
 	if (upper == 1)
+	{
 		base_to = "0123456789ABCDEF";
+		return (base_to);
+	}
 	else if (upper == 0)
+	{
 		base_to = "0123456789abcdef";
-	return (base_to);
+		return (base_to);
+	}
+	return (NULL);
 }
 
 static	int	buffer_write_prefix(t_buffer *buf, int has_prefix,

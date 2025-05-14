@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:48:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 04:05:24 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/14 14:05:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	apply_format_ptr(void *ptr_value, t_format f, t_buffer *buf)
 	int		len;
 	int		count;
 
+	if (!ptr_value)
+	{
+		buffer_write(buf, "(nil)", 5);
+		return (5);
+	}
 	len = utoa_base_buf(ptr, (unsigned long)ptr_value, "0123456789abcdef");
 	count = 0;
 	if (!f.flag_minus && f.width > len + 2)
