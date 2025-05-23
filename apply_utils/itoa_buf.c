@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 20:50:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 04:07:40 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/24 05:07:51 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 
 int	itoa_buf(char *buf, int value)

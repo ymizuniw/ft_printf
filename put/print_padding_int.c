@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 23:31:38 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:45:13 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/24 05:08:24 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 int	print_padding_int(t_format f, int len, int has_prefix, t_buffer *buf)
 {

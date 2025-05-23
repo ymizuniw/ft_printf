@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:43:21 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:47:08 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/24 05:08:33 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 static char	zero_or_space(int flag_zero, int flag_minus)
 {

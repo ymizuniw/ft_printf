@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:32:11 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:16:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/24 05:08:35 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 static int	padding_len(int width, int len)
 {

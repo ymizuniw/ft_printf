@@ -3,43 +3,45 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+         #
+#    By: yourlogin <yourlogin@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/05/13 15:00:41 by ymizuniw          #+#    #+#              #
-#    Updated: 2025/05/14 13:29:54 by ymizuniw         ###   ########.fr        #
+#    Created: YYYY/MM/DD                              #+#    #+#              #
+#    Updated: YYYY/MM/DD                              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
+
+SRC_DIRS	= apply apply_utils buffer parse_and_dispatch put .
+OBJ_DIR		= obj
+
+SRC			= $(shell find $(SRC_DIRS) -name '*.c')
+OBJ			= $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
+
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 AR			= ar rcs
 RM			= rm -f
+MKDIR		= mkdir -p
 
-# ---------- ディレクトリ ----------
-SRC_DIRS	= apply apply_utils buffer libft parse_and_dispatch put
-OBJ_DIR		= obj
-
-# ---------- ソース収集 ----------
-SRC_FILES	= ft_printf.c $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c))
-OBJ_FILES	= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
-
-# ---------- ビルドルール ----------
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	$(AR) $(NAME) $^
+bonus: all
 
+$(NAME): $(OBJ)
+	$(AR) $(NAME) $(OBJ)
+
+# 元のファイル階層を obj に写してコンパイル
 $(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
+	@$(MKDIR) $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ_FILES)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

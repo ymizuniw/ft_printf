@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 20:25:41 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 02:43:18 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/24 05:08:15 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 static int	parse_number(const char *s, int *i);
 static int	is_flag(const char c);

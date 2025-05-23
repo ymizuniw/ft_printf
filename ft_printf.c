@@ -6,41 +6,42 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:44:16 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 16:02:00 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/24 05:30:41 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#define PRINTF_CAPACITY 1024
+#include "ft_printf_bonus.h"
+#include <stdarg.h>
+#include <stdlib.h>
 
 int	ft_printf(const char *format, ...)
 {
+	t_token		*tokens;
+	size_t		count;
 	va_list		args;
 	t_buffer	buf;
-	int			i;
+	size_t		i;
+	int			len;
 
-	if (!format)
-		return (-1);
-	if (init_buffer(&buf, PRINTF_CAPACITY) == -1)
-		return (-1);
 	va_start(args, format);
-	buf.len = 0;
-	buf.total = 0;
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			int	skip;
+	buffer_init(&buf);
 
-			skip = dispatch_format(format + i + 1, args, &buf);
-			i += skip + 1;
-		}
-		else
-			buffer_write_char(&buf, format[i++]);
+	tokens = malloc(sizeof(t_token) * 128);
+	if (!tokens)
+		return (va_end(args), -1);
+
+	count = tokenize_format(format, tokens, 128, args);
+	len = 0;
+	i = 0;
+	while (i < count)
+	{
+		if (tokens[i].type == TOK_TEXT)
+			len += buffer_write_str(&buf, tokens[i].str);
+		else if (tokens[i].type == TOK_CONV)
+			len += dispatch_format_token(&tokens[i], args, &buf);
+		i++;
 	}
-	va_end(args);
 	buffer_output(&buf);
-	free_buffer(&buf);
-	return ((int)buf.total);
+	va_end(args);
+	return (len);
 }

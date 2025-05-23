@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:15:21 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 03:43:42 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/24 05:08:05 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 void	buffer_write(t_buffer *buf, const char *s, int len)
 {

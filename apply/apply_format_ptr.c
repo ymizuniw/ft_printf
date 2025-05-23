@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:48:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 14:05:43 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/24 05:07:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 int	apply_format_ptr(void *ptr_value, t_format f, t_buffer *buf)
 {

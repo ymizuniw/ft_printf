@@ -10,50 +10,71 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
-int	dispatch_format(const char *s, va_list args, t_buffer *buf)
+static t_spec_group	get_spec_group(char c)
+{
+	if (c == 'c' || c == 's' || c == '%')
+		return (GR_STRING);
+	else if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
+		return (GR_NUMBER);
+	else if (c == 'p')
+		return (GR_POINTER);
+	return (GR_NON);
+}
+
+static int	dispatch_string_format(const t_token *token, va_list args,
+		t_buffer *buf)
 {
 	t_format	f;
-	int			i;
 
-	i = 0;
-	f = parse_format(s, &i, args);
+	f = token->format;
 	if (f.specifier == 'c')
-	{
 		put_char_format(va_arg(args, int), f, buf);
-		return (i + 1);
-	}
-	if (f.specifier == 's')
-	{
+	else if (f.specifier == 's')
 		put_str_format(va_arg(args, char *), f, buf);
-		return (i + 1);
-	}
-	if (f.specifier == 'd' || f.specifier == 'i')
-	{
-		apply_format_int(va_arg(args, int), f, buf);
-		return (i + 1);
-	}
-	if (f.specifier == 'u')
-	{
-		apply_format_unsigned(va_arg(args, unsigned int), f, buf);
-		return (i + 1);
-	}
-	if (f.specifier == 'x' || f.specifier == 'X')
-	{
-		apply_format_hex(va_arg(args, unsigned int), f, buf,
-				f.specifier == 'X');
-		return (i + 1);
-	}
-	if (f.specifier == 'p')
-	{
-		apply_format_ptr(va_arg(args, void *), f, buf);
-		return (i + 1);
-	}
-	if (f.specifier == '%')
-	{
+	else if (f.specifier == '%')
 		put_percent_format(f, buf);
-		return (i + 1);
-	}
+	return (1);
+}
+
+static int	dispatch_number_format(const t_token *token, va_list args,
+		t_buffer *buf)
+{
+	t_format	f;
+
+	f = token->format;
+	if (f.specifier == 'd' || f.specifier == 'i')
+		apply_format_int(va_arg(args, int), f, buf);
+	if (f.specifier == 'u')
+		apply_format_unsigned(va_arg(args, unsigned int), f, buf);
+	if (f.specifier == 'x' || f.specifier == 'X')
+		apply_format_hex(va_arg(args, unsigned int), f, buf,
+			f.specifier == 'X');
+	return (1);
+}
+
+static int	dispatch_pointer_format(const t_token *token, va_list args,
+		t_buffer *buf)
+{
+	t_format	f;
+
+	f = token->format;
+	if (f.specifier == 'p')
+		apply_format_ptr(va_arg(args, void *), f, buf);
+	return (1);
+}
+
+int	dispatch_format_token(const t_token *token, va_list args, t_buffer *buf)
+{
+	t_spec_group	group;
+
+	group = get_spec_group(token->format.specifier);
+	if (group == GR_STRING)
+		return (dispatch_string_format(token, args, buf));
+	else if (group == GR_NUMBER)
+		return (dispatch_number_format(token, args, buf));
+	if (group == GR_POINTER)
+		return (dispatch_pointer_format(token, args, buf));
 	return (0);
 }

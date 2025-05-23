@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:09:23 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/14 04:04:40 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/24 05:07:32 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 int	apply_format_int(int n, t_format f, t_buffer *buf)
 {
