@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 23:31:38 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/24 05:08:24 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:36:31 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-int	print_padding_int(t_format f, int len, int has_prefix, t_buffer *buf)
+int	print_padding_int(t_format f, int len, int has_prefix)
 {
 	int		total_len;
 	int		padding_len;
@@ -27,5 +27,5 @@ int	print_padding_int(t_format f, int len, int has_prefix, t_buffer *buf)
 	padding_len = f.width - total_len;
 	if (padding_len < 0)
 		padding_len = 0;
-	return (put_nchar_buf(padding_char, padding_len, buf));
+	return ()
 }

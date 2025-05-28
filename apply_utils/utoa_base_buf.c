@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:43:17 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/24 05:07:55 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:16:24 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-int	utoa_base_buf(char *buf, unsigned long value, const char *base)
+char	*utoa_base_buf(unsigned long value, const char *base)
 {
 	char	reversed[18];
 	int		base_len;
@@ -29,9 +29,6 @@ int	utoa_base_buf(char *buf, unsigned long value, const char *base)
 		value /= base_len;
 	}
 	j = 0;
-	while (i--)
-		buf[j++] = reversed[i];
-	buf[j] = '\0';
-	return (j);
+	return (reversed);
 }
 // //!buf, !base.

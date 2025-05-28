@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 23:23:31 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/24 05:08:27 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:38:02 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-int	print_prefix(int n, t_format f, t_buffer *buf)
+int	print_prefix(int n, t_format f)
 {
 	if (n < 0)
 	{

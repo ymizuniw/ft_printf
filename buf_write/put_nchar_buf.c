@@ -1,20 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   buffer_output.c                                    :+:      :+:    :+:   */
+/*   put_nchar_buf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 21:27:14 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/24 05:08:03 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/27 21:47:48 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/27 21:52:00 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_bonus.h"
-
-void	buffer_output(t_buffer *buf)
+int put_nchar_buf(char *dst, char c, int n)
 {
-	write(1, buf->data, buf->len);
-	buf->total += buf->len;
-	buf->len = 0;
+	int i;
+
+	i = 0;
+	while (i < n)
+	{
+		dst[i] = c;
+		i++;
+	}
+	return i;
+}
+
+int put_prefix_buf(char *dst, int n, t_format f)
+{
+	if (n < 0)
+	{
+		*dst = '-';
+		return (1);
+	}
+	else if (f.flag_plus)
+	{
+		*dst = '+';
+		return (1);
+	}
+	else if (f.flag_space)
+	{
+		*dst = ' ';
+		return (1);
+	}
+	else if (f.flag_space)
+	{
+		*dst = ' ';
+		return (1);
+	}
+	return (0);
 }

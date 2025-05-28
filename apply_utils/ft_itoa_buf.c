@@ -1,41 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itoa_buf.c                                         :+:      :+:    :+:   */
+/*   ft_itoa_buf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 20:50:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/24 05:07:51 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/28 17:41:41 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
+#include <limits.h>
 
-int	itoa_buf(char *buf, int value)
+//convert an integer to a string and store it in buf.
+//return the length of the string.
+//over/underflowは考慮しない。INT_MIN is handled in
+//the casging of int to unsigned int.
+int	ft_itoa_buf(char *buf, int n)
 {
-	char	reversed[12];
-	unsigned int	abs_value;
-	int		i;
-	int		j;
+	char	tmp[12];
+	unsigned int	num;
+	int		i = 0;
+	int		j = 0;
+	int		is_negative = (n < 0);
 
-	if (value == 0)
+	if (n == 0)
 	{
 		buf[0] = '0';
 		buf[1] = '\0';
-		return (1);
+		return 1;
 	}
-	abs_value = (value < 0) ? -((unsigned int)value) : (unsigned int)value;
-	i = 0;
-	while (abs_value > 0)
+	num = (n < 0) ? (unsigned int)(-((long)n)) : (unsigned int)n;
+	while (num > 0)
 	{
-		reversed[i++] = '0' + (abs_value % 10);
-		abs_value /= 10;
+		tmp[i++] = '0' + (num % 10);
+		num /= 10;
 	}
-	j = 0;
-	while (i--)
-		buf[j++] = reversed[i];
+	if (is_negative)
+		buf[j++] = '-';
+	while (i-- > 0)
+		buf[j++] = tmp[i];
+
 	buf[j] = '\0';
-	return (j);
+	return j;
 }

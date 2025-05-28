@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/24 05:31:20 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:43:06 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,6 @@ typedef struct s_token
 	t_format		format;
 }					t_token;
 
-// buffer for basic I/O
-typedef struct s_buffer
-{
-	char			*data;
-	int				len;
-	size_t			total;
-	int				capacity;
-}					t_buffer;
-
 // specifier group enum for dispatching
 typedef enum e_spec_group
 {
@@ -63,6 +54,15 @@ typedef enum e_spec_group
 	GR_NUMBER,
 	GR_POINTER
 }					t_spec_group;
+
+typedef struct s_intfmt {
+	int		len_digits;
+	int		has_prefix;
+	int		prec_zeros;
+	int		content_len;
+	int		width_padding;
+	int		total_len;
+}	t_intfmt;
 
 // main
 int					ft_printf(const char *format, ...);

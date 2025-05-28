@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 02:52:36 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/24 05:06:46 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:43:15 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static const	char	*get_hex_base(int upper)
 
 	if (upper == 1)
 	{
-		base_to = "0123456789ABCDEF";
+		base_to = "0123456789ABCDEF"; //USE MACRO
 		return (base_to);
 	}
 	else if (upper == 0)
@@ -36,8 +36,7 @@ static const	char	*get_hex_base(int upper)
 	return (NULL);
 }
 
-static	int	buffer_write_prefix(t_buffer *buf, int has_prefix,
-				int upper)
+static	int	write_prefix(int has_prefix, int upper)
 {
 	int	add_element;
 
@@ -53,7 +52,7 @@ static	int	buffer_write_prefix(t_buffer *buf, int has_prefix,
 
 int	apply_format_hex(unsigned int n, t_format f, t_buffer *buf, int upper)
 {
-	char		num[17];
+	char		num[17];// how about add relm for prefix and sign?
 	const char	*base;
 	int			len;
 	int			count;
