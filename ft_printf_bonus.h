@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/27 21:43:06 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:02:52 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,35 +78,27 @@ void				parse_precision(const char *s, int *i, t_format *f,
 						va_list args);
 
 // dispatcher
-int					dispatch_format_token(const char *s, va_list args, t_buffer *buf);
+int					dispatch_format_token(const char *s, va_list args);
 
 // put
-int					put_char_format(char c, t_format f, t_buffer *buf);
-int					put_str_format(char *s, t_format f, t_buffer *buf);
-int					put_percent_format(t_format f, t_buffer *buf);
+int					put_char_format(char c, t_format f);
+int					put_str_format(char *s, t_format f);
+int					put_percent_format(t_format f);
 
 // apply
-int					apply_format_int(int n, t_format f, t_buffer *buf);
-int					apply_format_unsigned(unsigned int n, t_format f,
-						t_buffer *buf);
-int					apply_format_hex(unsigned int n, t_format f, t_buffer *buf,
-						int is_upper);
-int					apply_format_ptr(void *ptr, t_format f, t_buffer *buf);
-int					print_prefix(int n, t_format f, t_buffer *buf);
+int					apply_format_int(int n, t_format f);
+int					apply_format_unsigned(unsigned int n, t_format f);
+int					apply_format_hex(unsigned int n, t_format f, int is_upper);
+int					apply_format_ptr(void *ptr, t_format f);
+int					print_prefix(int n, t_format f);
 
 // apply_utils
 int					itoa_buf(char *buf, int n);
 int					utoa_buf(char *buf, unsigned int n);
 int					utoa_base_buf(char *buf, unsigned long n, const char *base);
-int					print_padding_int(t_format f, int len, int has_prefix,
-						t_buffer *buf);
+int					print_padding_int(t_format f, int len, int has_prefix);
 
 // buffer
-int					init_buffer(t_buffer *buf, int capacity);
-void				free_buffer(t_buffer *buf);
-void				buffer_write(t_buffer *buf, const char *s, int len);
-void				buffer_write_char(t_buffer *buf, char c);
-void				buffer_output(t_buffer *buf);
-int					put_nchar_buf(char c, int n, t_buffer *buf);
+int					put_nchar_buf(char c, int n);
 
 #endif

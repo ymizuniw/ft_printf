@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:44:16 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/28 16:56:46 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/29 04:01:07 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int	ft_printf(const char *format, ...)
 {
-
-	//parse_format
-	//tokenize_format
-	//
+	//tokenize
+	//parse tokens
+	//parse arguments
+	//apply format specifiers
 }

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 03:28:34 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/28 17:08:02 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:08:16 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,32 @@ static void	get_conv_token(const char *fmt, t_token *tokens, va_list ap,
 		size_t *place);
 static void	get_txt_token(const char *fmt, t_token *tokens, size_t *place);
 
-size_t	tokenize_format(const char *fmt, t_token *tokens, size_t max, va_list ap)
+t_list	*tokenize_format(const char *fmt, va_list ap)
 {
-	size_t	index;
-	size_t	place;
+	t_list	*head = NULL;
+	t_token	*token;
+	t_list	*node;
 
-	index = 0;
-	place = 0;
-	while (*fmt && index < max)
+	while (*fmt)
 	{
-		if (*fmt == '%')
-			get_conv_token(fmt, &tokens[index], ap, &place);
+		if (*fmt == '%' && *(fmt + 1) != '%')
+			token = get_conv_token(&fmt, ap);
 		else
-			get_txt_token(fmt, &tokens[index], &place);
-		fmt += place;
-		index++;
+			token = get_txt_token(&fmt);
+		if (!token)
+			return (ft_lstclear(&head, free_token), NULL);
+		node = ft_lstnew(token);
+		if (!node)
+			return (free_token(token), ft_lstclear(&head, free_token), NULL);
+		ft_lstadd_back(&head, node);
 	}
-	return (index);
+	return head;
 }
 
 static void	get_conv_token(const char *fmt, t_token *tokens, va_list ap,
 		size_t *place)
 {
-	int		j;
-	va_list	ap_copy;
 
-	va_copy(ap_copy, ap);
-	j = 0;
-	tokens->type = TK_CONV;
-	tokens->format = parse_format(fmt, &j, ap_copy);
-	tokens->str = ft_substr(fmt, 0, j + 1);
-	va_end(ap_copy);
-	*place += j + 1;
 }
 
 static void	get_txt_token(const char *fmt, t_token *tokens, size_t *place)
@@ -60,4 +54,14 @@ static void	get_txt_token(const char *fmt, t_token *tokens, size_t *place)
 	tokens->type = TK_TEXT;
 	tokens->str = ft_substr(fmt, 0, len);
 	*place += len;
+}
+
+static void	free_token(t_token *token)
+{
+	if (!token)
+		return ;
+	free(token->str);
+	if (token->type == TK_CONV)
+		free(token->format);
+	free(token);
 }
