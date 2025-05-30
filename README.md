@@ -53,7 +53,7 @@ apply_format(t_token.conv, arg)
 検討
 ・フラグ情報は参照されては行けない場合がある。精度が指定されていないのに初期化した値を精度とみなしては行けない。
 ・utils関数のファイルを除いて、一つのファイルには一つの関数を割り当てる。staticによる補助関数は除く。
-
+・ '-' がある場合、0 は無効?
 
 MY FT_PRINTF LOGIC:
 Basic flow（only for mandatory）

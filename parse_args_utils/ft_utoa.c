@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_prefix.c                                     :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 23:23:31 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/27 17:38:02 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/12 18:43:17 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/30 22:29:12 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-int	print_prefix(int n, t_format f)
+char	*utoa(unsigned int n)
 {
-	if (n < 0)
+	char	buf[11];
+	int		i;
+	char	*str;
+
+	if (n == 0)
+		return (ft_strdup("0"));
+	i = 0;
+	while (n > 0)
 	{
-		buffer_write_char(buf, '-');
-		return (1);
+		buf[i++] = '0' + (n % 10);
+		n /= 10;
 	}
-	else if (f.flag_plus)
-	{
-		buffer_write_char(buf, '+');
-		return (1);
-	}
-	else if (f.flag_space)
-	{
-		buffer_write_char(buf, ' ');
-		return (1);
-	}
-	return (0);
+	str = malloc(i + 1);
+	if (!str)
+		return (NULL);
+	str[i] = '\0';
+	while (i-- > 0)
+		str[i] = buf[i];
+	return (str);
 }

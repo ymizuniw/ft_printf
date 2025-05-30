@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 05:11:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 05:43:44 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/30 22:38:57 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,26 @@ int	parse_args(t_list *tokens, va_list ap)
 			if (f->prec_from_arg)
 				f->precision = va_arg(ap, int);
 		}
+		token->parsed_arg = arg_to_spec(f, ap);
+		tokens = tokens->next;
 	}
 }
 
-static char *arg_to_spec(t_format *f, va_list *ap)
+static char	*arg_to_spec(t_format *f, va_list ap)
 {
-	char *str;
-	void *ptr;
+	int		arg;
+	void	*ptr;
+	char	*str;
+
 	if (!f || !ap)
 		return (NULL);
 	if (f->spec == 'd' || f->spec == 'i')
-		return (ft_itoa(va_arg(*ap, int)));
+	{
+		arg = va_arg(*ap, int);
+		if (arg < 0)
+			f->is_negative = TRUE;
+		return (ft_itoa_abs(arg));
+	}
 	if (f->spec == 'u')
 		return (ft_uitoa(va_arg(*ap, unsigned int)));
 	if (f->spec == 'x' || f->spec == 'X')
@@ -52,24 +61,23 @@ static char *arg_to_spec(t_format *f, va_list *ap)
 	return (NULL);
 }
 
-static char *s_or_p(t_format f, va_list *ap)
+static char	*s_or_p(t_format f, va_list *ap)
 {
-	char *str;
-	void *ptr
+	char	*str;
 
+	void *ptr
 	if (f->spec == 's')
 	{
 		str = va_arg(*ap, char *);
 		if (!str)
 			return (ft_strdup("(null)"));
-		return (ft_strdup(s));
+		return (ft_strdup(str));
 	}
 	else if (f->spec == 'p')
 	{
 		ptr = va_arg(*ap, void *);
 		if (!ptr)
-			return (ft_strdup("(nill)"));
-		return (ft_strdup(ptr));
+			return (ft_ptoa(ptr));
 	}
 	return (NULL);
 }

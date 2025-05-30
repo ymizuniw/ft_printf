@@ -6,15 +6,15 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:11:04 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 04:53:11 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/30 22:43:56 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-static	t_token *get_conv_token(const char *fmt, size_t *place);
-static	t_token	*get_block_token(const char *fmt, size_t *place);
-static	void	free_token(void *token_ptr);
+static t_token	*get_conv_token(const char *fmt, size_t *place);
+static t_token	*get_block_token(const char *fmt, size_t *place);
+static void		free_token(void *token_ptr);
 
 t_list	*tokenize_format(const char *fmt, va_list ap)
 {
@@ -41,10 +41,10 @@ t_list	*tokenize_format(const char *fmt, va_list ap)
 	return (head);
 }
 
-static	t_token	*get_block_token(const char *format, size_t *place)
+static t_token	*get_block_token(const char *format, size_t *place)
 {
-	size_t len;
-	t_token *token;
+	size_t	len;
+	t_token	*token;
 
 	len = 0;
 	while (format[*place + len] && format[*place + len] != '%')
@@ -60,12 +60,12 @@ static	t_token	*get_block_token(const char *format, size_t *place)
 	return (token);
 }
 
-static	t_token	*get_conv_token(const char *fmt, size_t *place)
+static t_token	*get_conv_token(const char *fmt, size_t *place)
 {
-	t_token	*token;
-	t_format *f;
-	size_t start;
-	size_t i;
+	t_token		*token;
+	t_format	*f;
+	size_t		start;
+	size_t		i;
 
 	start = *place;
 	i = start + 1;
@@ -74,17 +74,12 @@ static	t_token	*get_conv_token(const char *fmt, size_t *place)
 		return (NULL);
 	token->type = CONV;
 	f = token->format;
-
-	parse_flags(fmt, f, (size_t *)i);
-	parse_width(fmt, f, (size_t *)i);
-	parse_precision(fmt, f, (size_t *)i);
-	parse_specifier(fmt, token, f, (size_t *)i);
-
+	parse_format(fmt, f, *i);
 }
 
-static void free_token(void *ptr)
+static void	free_token(void *ptr)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = (void *)ptr;
 	if (!token)
@@ -94,15 +89,17 @@ static void free_token(void *ptr)
 	free(token);
 }
 
-static void initialize_format(t_format *fmt)
+static void	initialize_format(t_format *fmt)
 {
-	fmt->flag_minus = 0;
-	fmt->flag_zero = 0;
-	fmt->flag_hash = 0;
-	fmt->flag_plus = 0;
-	fmt->flag_space = 0;
+	fmt->flag_minus = FALSE;
+	fmt->flag_zero = FALSE;
+	fmt->flag_hash = FALSE;
+	fmt->flag_plus = FALSE;
+	fmt->flag_space = FALSE;
 	fmt->width = 0;
+	fmt->width_from_args = FALSE;
 	fmt->precision = 0;
-	fmt->precision_on = 0;
+	fmt->prec_from_args = FALSE;
+	fmt->precision_on = FALSE;
 	fmt->spec = 0;
 }

@@ -10,38 +10,43 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libftprintf.a
+NAME    = libftprintf.a
 
-SRC_DIRS	= apply apply_utils buffer parse_and_dispatch put .
-OBJ_DIR		= obj
+# Directories
+SRC_DIRS = apply_format parse_args parse_format tokenize libft .
+INC      = -I. -Ilibft
 
-SRC			= $(shell find $(SRC_DIRS) -name '*.c')
-OBJ			= $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
+# Compiler and flags
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror
 
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-AR			= ar rcs
-RM			= rm -f
-MKDIR		= mkdir -p
+# Find all .c files in directories
+SRCS    = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c))
+OBJS    = $(SRCS:.c=.o)
 
+# Default target
 all: $(NAME)
 
+# Archive into static library
+$(NAME): $(OBJS)
+	@ar rcs $@ $^
+
+# Clean object files
+clean:
+	@rm -f $(OBJS)
+
+# Clean all
+fclean: clean
+	@rm -f $(NAME)
+
+# Recompile everything
+re: fclean all
+
+# Bonus target if needed
 bonus: all
 
-$(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
-
-# 元のファイル階層を obj に写してコンパイル
-$(OBJ_DIR)/%.o: %.c
-	@$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-clean:
-	$(RM) $(OBJ)
-
-fclean: clean
-	$(RM) $(NAME)
-
-re: fclean all
+# Compilation rule
+%.o: %.c
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 .PHONY: all clean fclean re bonus

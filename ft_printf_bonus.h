@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 05:08:22 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/30 21:19:35 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_format
 	t_bool			prec_from_arg;
 	int				precision;
 	t_bool			precision_on;
-
+	t_bool			is_negative;
 	char			spec;
 }					t_format;
 
@@ -57,31 +57,37 @@ typedef struct s_token
 	t_format		*format;
 	char			*parsed_arg;
 }					t_token;
-// specifier group enum for dispatching
 
-typedef enum e_spec_group
+typedef enum e_pad_pos
 {
-	GR_NON,
-	GR_STRING,
-	GR_NUMBER,
-	GR_POINTER
-}					t_spec_group;
+	PAD_NONE,
+	PAD_BACK,
+	PAD_AFTER_SIGN,
+	PAD_FRONT
+} t_pad_pos
+
+	typedef struct s_lens
+{
+	t_pad_pos		pad_pos;
+	size_t			prefix;
+	size_t			sign;
+	size_t			arg;
+	size_t			precised;
+	size_t			total;
+} t_lens
 
 // main
-int					ft_printf(const char *format, ...);
+int	ft_printf(const char *format, ...);
 
 // parse
-t_format			parse_format(const char *s, int *i, va_list args);
+t_format			parse_format(const char *format, int *i, va_list args);
 void				parse_flags(const char *fmt, t_format *f, size_t *i);
-void				parse_width(const char *s, t_format *f, size_t *i);
-void				parse_precision(const char *s, t_format *f, size_t *i);
-
-// dispatcher
-int					dispatch_format_token(const char *s, va_list args);
+void				parse_width(const char *format, t_format *f, size_t *i);
+void				parse_precision(const char *format, t_format *f, size_t *i);
 
 // put
 int					put_char_format(char c, t_format *f);
-int					put_str_format(char *s, t_format *f);
+int					put_str_format(char *format, t_format *f);
 int					put_percent_format(t_format *f);
 
 // apply
@@ -96,8 +102,5 @@ int					itoa_buf(char *buf, int n);
 int					utoa_buf(char *buf, unsigned int n);
 int					utoa_base_buf(char *buf, unsigned long n, const char *base);
 int					print_padding_int(t_format f, int len, int has_prefix);
-
-// buffer
-int					put_nchar_buf(char c, int n);
 
 #endif
