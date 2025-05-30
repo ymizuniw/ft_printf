@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utoa_base_buf.c                                    :+:      :+:    :+:   */
+/*   parse_precision.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 18:43:17 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/27 17:16:24 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/30 04:25:57 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/30 04:30:48 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_bonus.h"
+#include "ft_printf_bonus.h"
 
-char	*utoa_base_buf(unsigned long value, const char *base)
+void	parse_precision(const char *fmt, t_format *f, size_t *i)
 {
-	char	reversed[18];
-	int		base_len;
-	int		i;
-	int		j;
-
-	base_len = ft_strlen(base);
-	i = 0;
-	if (value == 0)
-		reversed[i++] = base[0];
-	while (value > 0)
+	if (fmt[*i] == '.')
 	{
-		reversed[i++] = base[value % base_len];
-		value /= base_len;
+		(*i)++;
+		if (fmt[*i] == '*')
+		{
+			f->prec_from_arg = TRUE;
+			(*i)++;
+		}
+		else if (is_digit(fmt[*i]))
+		{
+			f->precision = ft_atoi(fmt + *i);
+			while (is_digit(fmt[*i]))
+				(*i)++;
+		}
+		else
+			f->precision = 0;
 	}
-	j = 0;
-	return (reversed);
 }
-// //!buf, !base.

@@ -21,7 +21,7 @@ int	dispatch_format_token(const t_token *token, va_list args)
 {
 	t_spec_group	group;
 
-	group = get_spec_group(token->format.specifier);
+	group = get_spec_group(token->format->spec);
 	if (group == GR_STRING)
 		return (dispatch_string_format(token, args));
 	else if (group == GR_NUMBER)
@@ -45,38 +45,38 @@ static t_spec_group	get_spec_group(char c)
 
 static int	dispatch_string_format(const t_token *token, va_list args)
 {
-	t_format	f;
+	t_format	*f;
 
 	f = token->format;
-	if (f.specifier == 'c')
+	if (f->spec == 'c')
 		put_char_format(va_arg(args, int), f);
-	else if (f.specifier == 's')
+	else if (f->spec == 's')
 		put_str_format(va_arg(args, char *), f);
-	else if (f.specifier == '%')
+	else if (f->spec == '%')
 		put_percent_format(f);
 	return (1);
 }
 
 static int	dispatch_number_format(const t_token *token, va_list args)
 {
-	t_format	f;
+	t_format	*f;
 
 	f = token->format;
-	if (f.specifier == 'd' || f.specifier == 'i')
-		apply_format_int(va_arg(args, int), f, buf);
-	if (f.specifier == 'u')
-		apply_format_unsigned(va_arg(args, unsigned int), f, buf);
-	if (f.specifier == 'x' || f.specifier == 'X')
-		apply_format_hex(va_arg(args, unsigned int), f, f.specifier == 'X');
+	if (f->spec == 'd' || f->spec == 'i')
+		apply_format_int(va_arg(args, int), f);
+	if (f->spec == 'u')
+		apply_format_unsigned(va_arg(args, unsigned int), f);
+	if (f->spec == 'x' || f->spec == 'X')
+		apply_format_hex(va_arg(args, unsigned int), f, f->spec == 'X');
 	return (1);
 }
 
 static int	dispatch_pointer_format(const t_token *token, va_list args)
 {
-	t_format	f;
+	t_format	*f;
 
 	f = token->format;
-	if (f.specifier == 'p')
+	if (f->spec == 'p')
 		apply_format_ptr(va_arg(args, void *), f);
 	return (1);
 }

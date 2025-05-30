@@ -1,27 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   utoa_base_buf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 03:31:37 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 02:00:37 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/12 18:43:17 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/30 05:44:28 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printf(const char *format, ...)
-{
-	//parse_format
+#include "../ft_printf_bonus.h"
 
-	//va_start
-	//parse_args
-
-	//return (count)
-}
-
-//format structure
-
-//csdiuxXp%
-
-//print_utils

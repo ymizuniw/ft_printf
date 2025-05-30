@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/27 21:41:21 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/30 04:57:47 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,19 @@ void				parse_width(const char *s, int *i, t_format *f,
 						va_list args);
 void				parse_precision(const char *s, int *i, t_format *f,
 						va_list args);
-//
+
 int					dispatch_format_token(const char *s, va_list args);
 
-int					put_char_format(char c, t_format f);
-int					put_str_format(char *s, t_format f);
-int					put_percent_format(t_format f);
+int					put_char_format(char c, t_format *f);
+int					put_str_format(char *s, t_format *f);
+int					put_percent_format(t_format *f);
 
 
-int					apply_format_int(int n, t_format f);
-int					apply_format_unsigned(unsigned int n, t_format f);
-int					apply_format_hex(unsigned int n, t_format f, int is_upper);
-int					apply_format_ptr(void *ptr, t_format f);
-int					print_prefix(int n, t_format f);
+int					apply_format_int(int n, t_format *f);
+int					apply_format_unsigned(unsigned int n, t_format *f);
+int					apply_format_hex(unsigned int n, t_format *f, int is_upper);
+int					apply_format_ptr(void *ptr, t_format *f);
+int					print_prefix(int n, t_format *f);
 
 // apply_utils 4 functions
 char				*itoa_buf(int n);

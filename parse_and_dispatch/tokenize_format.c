@@ -5,29 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 03:28:34 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/28 18:08:16 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/30 02:11:04 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/30 04:53:11 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-static void	get_conv_token(const char *fmt, t_token *tokens, va_list ap,
-		size_t *place);
-static void	get_txt_token(const char *fmt, t_token *tokens, size_t *place);
+static	t_token *get_conv_token(const char *fmt, size_t *place);
+static	t_token	*get_block_token(const char *fmt, size_t *place);
+static	void	free_token(void *token_ptr);
 
 t_list	*tokenize_format(const char *fmt, va_list ap)
 {
-	t_list	*head = NULL;
-	t_token	*token;
+	t_list	*head;
 	t_list	*node;
+	t_token	*token;
+	size_t	place;
 
-	while (*fmt)
+	head = NULL;
+	place = 0;
+	while (fmt[place])
 	{
-		if (*fmt == '%' && *(fmt + 1) != '%')
-			token = get_conv_token(&fmt, ap);
+		if (fmt[place] == '%' && fmt[place + 1] && fmt[place + 1] != '%')
+			token = get_conv_token(fmt, &place);
 		else
-			token = get_txt_token(&fmt);
+			token = get_block_token(fmt, &place);
 		if (!token)
 			return (ft_lstclear(&head, free_token), NULL);
 		node = ft_lstnew(token);
@@ -35,33 +38,71 @@ t_list	*tokenize_format(const char *fmt, va_list ap)
 			return (free_token(token), ft_lstclear(&head, free_token), NULL);
 		ft_lstadd_back(&head, node);
 	}
-	return head;
+	return (head);
 }
 
-static void	get_conv_token(const char *fmt, t_token *tokens, va_list ap,
-		size_t *place)
+static	t_token	*get_block_token(const char *format, size_t *place)
 {
-
-}
-
-static void	get_txt_token(const char *fmt, t_token *tokens, size_t *place)
-{
-	size_t	len;
+	size_t len;
+	t_token *token;
 
 	len = 0;
-	while (fmt[len] && fmt[len] != '%')
+	while (format[*place + len] && format[*place + len] != '%')
 		len++;
-	tokens->type = TK_TEXT;
-	tokens->str = ft_substr(fmt, 0, len);
-	*place += len;
+	token = malloc(sizeof(t_token));
+	if (!token)
+		return (NULL);
+	token->type = TXT;
+	token->block = ft_substr(format + *place, 0, len);
+	if (!token->block)
+		return (free(token->block), free(token), NULL);
+	initialize_format(format);
+	return (token);
 }
 
-static void	free_token(t_token *token)
+static	t_token	*get_conv_token(const char *fmt, size_t *place)
 {
+	t_token	*token;
+	t_format *f;
+	size_t start;
+	size_t i;
+
+	start = *place;
+	i = start + 1;
+	token = alloc_token();
+	if (!token)
+		return (NULL);
+	token->type = CONV;
+	f = token->format;
+
+	parse_flags(fmt, f, (size_t *)i);
+	parse_width(fmt, f, (size_t *)i);
+	parse_precision(fmt, f, (size_t *)i);
+	parse_specifier(fmt, token, f, (size_t *)i);
+
+}
+
+static void free_token(void *ptr)
+{
+	t_token *token;
+
+	token = (void *)ptr;
 	if (!token)
 		return ;
-	free(token->str);
-	if (token->type == TK_CONV)
-		free(token->format);
+	free(token->block);
+	free(token->format);
 	free(token);
+}
+
+static void initialize_format(t_format *fmt)
+{
+	fmt->flag_minus = 0;
+	fmt->flag_zero = 0;
+	fmt->flag_hash = 0;
+	fmt->flag_plus = 0;
+	fmt->flag_space = 0;
+	fmt->width = 0;
+	fmt->precision = 0;
+	fmt->precision_on = 0;
+	fmt->spec = 0;
 }

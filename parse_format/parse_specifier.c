@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   parse_specifier.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 03:31:37 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 02:00:37 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/30 04:31:19 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/30 04:37:57 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printf(const char *format, ...)
+#include "ft_printf_bonus.h"
+
+void	parse_specifier(const char *fmt, t_token *token, t_format *f, size_t *i)
 {
-	//parse_format
-
-	//va_start
-	//parse_args
-
-	//return (count)
+	if (is_specifier(fmt[*i]))
+	{
+		f->spec = fmt[*i];
+		(*i)++;
+	}
+	else
+		return (free(token->format), free(token), NULL);
 }
-
-//format structure
-
-//csdiuxXp%
-
-//print_utils
