@@ -48,6 +48,10 @@ apply_format(t_token.conv, arg)
 
 
 
+□特殊ケース
+・char 出力で\0の時は1を返す。
+・
+
 
 
 検討

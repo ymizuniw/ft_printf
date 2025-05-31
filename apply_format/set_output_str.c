@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:03:38 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 15:37:35 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:45:17 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_output_str(char *output_str, t_parts_out parts, t_lens lens)
 	buf_index = 0;
 	prefix_output(output_str, (size_t *)buf_index, lens);
 	args_output(output_str, (size_t *)buf_index, lens);
-	outpu_str[i] = '\0';
+	outpu_str[buf_index] = '\0';
 }
 
 static void	prefix_output(char *output_str, size_t *buf_index,
