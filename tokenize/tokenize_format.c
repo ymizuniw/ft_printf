@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:11:04 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 22:43:56 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:25:19 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ t_list	*tokenize_format(const char *fmt, va_list ap)
 	return (head);
 }
 
-static t_token	*get_block_token(const char *format, size_t *place)
+static t_token	*get_block_token(const char *fmt, size_t *place)
 {
 	size_t	len;
 	t_token	*token;
 
 	len = 0;
-	while (format[*place + len] && format[*place + len] != '%')
+	while (fmt[*place + len] && fmt[*place + len] != '%')
 		len++;
 	token = malloc(sizeof(t_token));
 	if (!token)
@@ -67,14 +67,13 @@ static t_token	*get_conv_token(const char *fmt, size_t *place)
 	size_t		start;
 	size_t		i;
 
-	start = *place;
-	i = start + 1;
+	start = *place + 1;
 	token = alloc_token();
 	if (!token)
 		return (NULL);
 	token->type = CONV;
 	f = token->format;
-	parse_format(fmt, f, *i);
+	parse_format(fmt, token, f, place);
 }
 
 static void	free_token(void *ptr)

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 05:11:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 22:38:57 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:37:04 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*arg_to_spec(t_format *f, va_list ap)
 	if (f->spec == 'u')
 		return (ft_uitoa(va_arg(*ap, unsigned int)));
 	if (f->spec == 'x' || f->spec == 'X')
-		return (ft_xtoa(va_arg(*ap, unsigned int), f->spec == 'X'));
+		return (ft_xtoa(va_arg(*ap, unsigned int), ft_is_upper(f->spec)));
 	if (f->spec == 'c')
 		return (ft_ctoa(va_arg(*ap, int)));
 	if (f->spec == 's' || f->spec == 'p')
@@ -64,8 +64,8 @@ static char	*arg_to_spec(t_format *f, va_list ap)
 static char	*s_or_p(t_format f, va_list *ap)
 {
 	char	*str;
+	void	*ptr;
 
-	void *ptr
 	if (f->spec == 's')
 	{
 		str = va_arg(*ap, char *);
@@ -75,6 +75,7 @@ static char	*s_or_p(t_format f, va_list *ap)
 	}
 	else if (f->spec == 'p')
 	{
+		f->flag_hash = FALSE;
 		ptr = va_arg(*ap, void *);
 		if (!ptr)
 			return (ft_ptoa(ptr));

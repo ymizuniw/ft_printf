@@ -6,25 +6,26 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:02:36 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 14:12:59 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:30:04 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-void	parse_flags(const char *fmt, t_format *f, size_t *i)
+void	parse_flags(const char *fmt, t_format *f, size_t *place)
 {
-	while (is_flag(fmt[*i]))
+	while (is_flag(fmt[*place]))
 	{
-		if (fmt[*i] == '-')
+		if (fmt[*place] == '-')
 			f->flag_minus = TRUE;
-		else if (fmt[*i] == '+')
+		else if (fmt[*place] == '+')
 			f->flag_plus = TRUE;
-		else if (fmt[*i] == ' ')
+		else if (fmt[*place] == ' ')
 			f->flag_space = TRUE;
-		else if (fmt[*i] == '0')
+		else if (fmt[*place] == '0')
 			f->flag_zero = TRUE;
-		else if (fmt[*i] == '#')
+		else if (fmt[*place] == '#')
 			f->flag_hash = TRUE;
+		(*place)++;
 	}
 }

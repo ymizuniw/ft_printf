@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 21:19:35 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:38:56 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 #  define BOOL_H
 #  define TRUE 1
 #  define FALSE 0
+
 typedef int			t_bool;
+
 # endif
 
 // token type separation
@@ -50,23 +52,27 @@ typedef struct s_format
 	char			spec;
 }					t_format;
 
-typedef struct s_token
+typedef struct s_parts_out
 {
-	t_token_type	type;
-	char			*block;
-	t_format		*format;
-	char			*parsed_arg;
-}					t_token;
+	char			prefix[3];
+	char			sign[2];
+	char			*precised_arg;
+	char			*padding;
+	size_t			prefix_len;
+	size_t			sign_len;
+	size_t			prec_len;
+	size_t			pad_len;
+}					t_parts_out;
 
 typedef enum e_pad_pos
 {
-	PAD_NONE,
-	PAD_BACK,
-	PAD_AFTER_SIGN,
-	PAD_FRONT
-} t_pad_pos
+	NONE,
+	BACK,
+	MIDDLE,
+	FRONT
+}					t_pad_pos;
 
-	typedef struct s_lens
+typedef struct s_lens
 {
 	t_pad_pos		pad_pos;
 	size_t			prefix;
@@ -74,13 +80,24 @@ typedef enum e_pad_pos
 	size_t			arg;
 	size_t			precised;
 	size_t			total;
-} t_lens
+}					t_lens;
+
+typedef struct s_token
+{
+	t_token_type	type;
+	char			*block;
+	t_format		*format;
+	char			*parsed_arg;
+	t_part_out		*parts_out;
+	t_lens			*lens;
+}					t_token;
 
 // main
-int	ft_printf(const char *format, ...);
+int					ft_printf(const char *format, ...);
 
 // parse
-t_format			parse_format(const char *format, int *i, va_list args);
+void				parse_format(const char *fmt, t_token *token, t_format *f,
+						size_t *i);
 void				parse_flags(const char *fmt, t_format *f, size_t *i);
 void				parse_width(const char *format, t_format *f, size_t *i);
 void				parse_precision(const char *format, t_format *f, size_t *i);

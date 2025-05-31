@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:37:56 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 22:24:30 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:21:42 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-t_bool	is_numeric_spec(char spec)
+t_bool	is_num_spec(char spec)
 {
 	return (spec == 'd' || spec == 'i' || spec == 'u' || spec == 'x'
 		|| spec == 'X');
@@ -94,6 +94,6 @@ size_t	set_count_pad(t_format *f, t_lens lens)
 		lens.pad = lens.width - lens.total;
 		return (lens.pad);
 	}
-	lens->pad_pos = NONE;
+	lens.pad_pos = NONE;
 	return (0);
 }

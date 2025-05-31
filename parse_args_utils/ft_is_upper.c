@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_is_upper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 03:31:37 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 02:00:37 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/31 13:06:29 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/05/31 15:35:33 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printf(const char *format, ...)
+#include "ft_printf_bonus.h"
+
+int	ft_is_upper(char c)
 {
-	//parse_format
-
-	//va_start
-	//parse_args
-
-	//return (count)
+	return (c = 'X');
 }
-
-//format structure
-
-//csdiuxXp%
-
-//print_utils

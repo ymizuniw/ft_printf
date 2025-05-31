@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:43:17 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 22:29:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:33:54 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 char	*utoa(unsigned int n)
 {
 	char	buf[11];
-	int		i;
-	char	*str;
+	char	*res;
+	int		buf_index;
 
 	if (n == 0)
-		return (ft_strdup("0"));
-	i = 0;
+		return (ft_resdup("0"));
+	buf_index = 0;
 	while (n > 0)
 	{
-		buf[i++] = '0' + (n % 10);
+		buf[buf_index] = '0' + (n % 10);
 		n /= 10;
 	}
-	str = malloc(i + 1);
-	if (!str)
+	res = malloc(buf_index + 1);
+	if (!res)
 		return (NULL);
-	str[i] = '\0';
-	while (i-- > 0)
-		str[i] = buf[i];
-	return (str);
+	res[buf_index] = '\0';
+	while (buf_index > 0)
+		res[buf_index] = buf[buf_index];
+	return (res);
 }

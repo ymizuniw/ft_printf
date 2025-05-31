@@ -6,16 +6,18 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:29:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/30 22:41:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:37:15 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*xtoa(unsigned long num, int is_upper)
+#include "ft_printf_bonus.h"
+
+char	*xtoa(unsigned long num, t_bool is_upepr)
 {
-	char			buf[9];
-	const char		*base;
-	int				i;
-	char			*str;
+	char		buf[9];
+	const char	*base;
+	int			buf_index;
+	char		*str;
 
 	if (is_upper)
 		base = "0123456789ABCDEF";
@@ -23,17 +25,17 @@ char	*xtoa(unsigned long num, int is_upper)
 		base = "0123456789abcdef";
 	if (n == 0)
 		return (ft_strdup("0"));
-	i = 0;
+	buf_index = 0;
 	while (n > 0)
 	{
-		buf[i++] = base[n % 16];
+		buf[buf_index++] = base[n % 16];
 		n /= 16;
 	}
-	str = malloc(i + 1);
+	str = malloc(buf_index + 1);
 	if (!str)
 		return (NULL);
-	str[i] = '\0';
-	while (i-- > 0)
-		str[i] = buf[i];
+	str[buf_index] = '\0';
+	while (buf_index-- > 0)
+		str[buf_index] = buf[buf_index];
 	return (str);
 }
