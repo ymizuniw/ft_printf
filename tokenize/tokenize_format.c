@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:11:04 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 14:25:19 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/01 23:38:20 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ static t_token	*get_block_token(const char *fmt, size_t *place)
 	if (!token)
 		return (NULL);
 	token->type = TXT;
-	token->block = ft_substr(format + *place, 0, len);
+	token->block = ft_substr(fmt + *place, 0, len);
 	if (!token->block)
 		return (free(token->block), free(token), NULL);
-	initialize_format(format);
+	initialize_format(fmt);
 	return (token);
 }
 

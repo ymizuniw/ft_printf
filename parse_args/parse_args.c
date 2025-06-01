@@ -6,15 +6,16 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 05:11:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 15:37:04 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/02 00:29:03 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	parse_args(t_list *tokens, va_list ap)
+t_bool	parse_args(t_list *tokens, va_list ap)
 {
 	t_token		*token;
+	char		*stash;
 	t_format	*f;
 
 	while (tokens)
@@ -28,9 +29,13 @@ int	parse_args(t_list *tokens, va_list ap)
 			if (f->prec_from_arg)
 				f->precision = va_arg(ap, int);
 		}
-		token->parsed_arg = arg_to_spec(f, ap);
+		stash = arg_to_spec(f, ap);
+		if (!arg_to_spec)
+			return (free(stash), FALSE);
+		token->parsed_arg
 		tokens = tokens->next;
 	}
+	return (TRUE);
 }
 
 static char	*arg_to_spec(t_format *f, va_list ap)

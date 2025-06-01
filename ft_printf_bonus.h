@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 15:38:56 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/02 00:25:52 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,36 +88,53 @@ typedef struct s_token
 	char			*block;
 	t_format		*format;
 	char			*parsed_arg;
-	t_part_out		*parts_out;
+	t_parts_out		*parts_out;
 	t_lens			*lens;
 }					t_token;
 
 // main
 int					ft_printf(const char *format, ...);
 
-// parse
+// tokenize_format
+t_list				*tokenize_format(va_list ap, const char *fmt);
+
+// parse_format
 void				parse_format(const char *fmt, t_token *token, t_format *f,
-						size_t *i);
-void				parse_flags(const char *fmt, t_format *f, size_t *i);
-void				parse_width(const char *format, t_format *f, size_t *i);
-void				parse_precision(const char *format, t_format *f, size_t *i);
+						size_t *place);
+void				parse_flags(const char *fmt, t_format *f, size_t *place);
+void				parse_width(const char *fmt, t_format *f, size_t *place);
+void				parse_precision(const char *fmt, t_format *f,
+						size_t *place);
+void				parse_specifier(const char *fmt, t_token *token,
+						t_format *f, size_t *place);
+void				manage_flag_conflict(t_format *f);
+void				manage_flag_spec(t_format *f);
 
-// put
-int					put_char_format(char c, t_format *f);
-int					put_str_format(char *format, t_format *f);
-int					put_percent_format(t_format *f);
+// parse_format_utils
+int					is_flag(char c);
+int					is_specifier(char c);
+t_token				*initialize_token(void);
 
-// apply
-int					apply_format_int(int n, t_format *f);
-int					apply_format_unsigned(unsigned int n, t_format *f);
-int					apply_format_hex(unsigned int n, t_format *f, int is_upper);
-int					apply_format_ptr(void *ptr, t_format *f);
-int					print_prefix(int n, t_format *f);
+// parse_args
+t_bool				parse_args(t_list *tokens, va_list ap);
 
-// apply_utils
-int					itoa_buf(char *buf, int n);
-int					utoa_buf(char *buf, unsigned int n);
-int					utoa_base_buf(char *buf, unsigned long n, const char *base);
-int					print_padding_int(t_format f, int len, int has_prefix);
+// parse_args_utils
+char				*ft_ctoa(char c);
+int					ft_is_upper(char c);
+char				*ft_itoa_abs(int n);
+char				*ptoa(void *ptr);
+char				*utoa(unsigned int n);
+char				*xtoa(unsigned long num, t_bool is_upepr);
+
+// apply_format
+char				*apply_format(t_token *token, t_format *f);
+
+// apply_format_utils
+t_bool				is_num_spec(char spec);
+void				set_output_str(char *output_str, t_parts_out parts,
+						t_lens lens);
+
+// output
+int					output_token(const char *ouput_str, size_t len);
 
 #endif
