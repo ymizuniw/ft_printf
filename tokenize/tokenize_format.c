@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:11:04 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 01:36:39 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 02:53:48 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ t_list	*tokenize_format(const char *fmt)
 	while (fmt[place])
 	{
 		if (fmt[place] == '%' && fmt[place + 1])
+		{
+			place++;
 			token = get_conv_token(fmt, &place);
+		}
 		else
 			token = get_block_token(fmt, &place);
 		if (!token)
@@ -52,6 +55,7 @@ static t_token	*get_block_token(const char *fmt, size_t *place)
 	if (!token)
 		return (NULL);
 	token->type = TXT;
+	token->format = NULL;
 	token->block = ft_substr(fmt + *place, 0, len);
 	if (!token->block)
 		return (free(token), NULL);
@@ -74,7 +78,11 @@ static t_token	*get_conv_token(const char *fmt, size_t *place)
 		free_token(token);
 		return (NULL);
 	}
-	(*place)++;
-	parse_format(fmt, token, f, place);
+	parse_format(fmt, f, place);
+	if (f->spec == 0)
+{
+	free_token(token);
+	return NULL;
+}
 	return (token);
 }

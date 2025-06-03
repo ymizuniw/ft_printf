@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:31:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 01:29:05 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 02:29:10 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_bool	parse_specifier(const char *fmt, t_format *f,
 		size_t *place)
 {
-	printf("[debug] checking specifier at pos %zu: '%c'\n", *place, fmt[*place]);
 	if (is_specifier(fmt[*place]))
 	{
 		f->spec = fmt[*place];
@@ -24,7 +23,6 @@ t_bool	parse_specifier(const char *fmt, t_format *f,
 	}
 	else
 	{
-		(*place)++;
 		return (FALSE);
 	}
 }

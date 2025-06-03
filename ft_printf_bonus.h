@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 00:32:28 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 02:49:53 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int					ft_printf(const char *format, ...);
 t_list				*tokenize_format(const char *fmt);
 
 // parse_format
-void				parse_format(const char *fmt, t_token *token, t_format *f,
+void				parse_format(const char *fmt, t_format *f,
 						size_t *place);
 void				parse_flags(const char *fmt, t_format *f, size_t *place);
 void				parse_width(const char *fmt, t_format *f, size_t *place);

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 05:11:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/03 02:02:58 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 03:08:22 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ t_bool	parse_args(t_list *head, va_list ap)
 				f->width = va_arg(ap, int);
 			if (f->prec_from_arg)
 				f->precision = va_arg(ap, int);
-		}
 		stash = arg_to_spec(f, ap);
 		if (!stash)
 			return (FALSE);
 		token->parsed_arg = stash;
+		}
 		head = head->next;
 	}
 	return (TRUE);
