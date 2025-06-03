@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:18:35 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/02 18:36:43 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 07:32:54 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ char	*apply_format(t_token *token, t_format *f)
 	t_lens		lens;
 	char		*output_str;
 
+	token->lens = malloc (sizeof(t_lens));
+	if (!token->lens)
+		return (NULL);
 	initialize_len_and_parts(&lens, &parts);
 	set_lens(&lens, token, f, &parts);
 	parts.precised_arg = apply_precision(f, token->parsed_arg, &lens);
@@ -32,6 +35,7 @@ char	*apply_format(t_token *token, t_format *f)
 		return (free(parts.precised_arg), NULL);
 	set_output_str(output_str, &parts, &lens);
 	free(parts.precised_arg);
+	*(token->lens) = lens;
 	return (output_str);
 }
 
@@ -40,12 +44,12 @@ static void	initialize_len_and_parts(t_lens *lens, t_parts_out *parts)
 	lens->prefix = 0;
 	lens->sign = 0;
 	lens->arg = 0;
-	lens->prec = 0;
+	lens->prec = lens->arg;
 	lens->total = 0;
 	lens->pad = 0;
 	parts->prefix_len = 0;
 	parts->sign_len = 0;
-	parts->prec_len = 0;
+	parts->prec_len = lens->arg;
 	parts->pad_len = 0;
 }
 
@@ -67,7 +71,7 @@ static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f, t_parts_out *p
 static char	*apply_precision(t_format *f, char *arg, t_lens *lens)
 {
 	char	*res;
-	size_t	num_zeros;
+	int	num_zeros;
 
 	res = malloc(lens->prec + 1);
 	if (!res)
@@ -76,7 +80,7 @@ static char	*apply_precision(t_format *f, char *arg, t_lens *lens)
 		ft_strlcpy(res, arg, lens->prec + 1);
 	else
 	{
-		num_zeros = (size_t)lens->prec - lens->arg;
+		num_zeros = lens->prec - lens->arg;
 		ft_memset(res, '0', num_zeros);
 		ft_strlcpy(res + num_zeros, arg, lens->arg + 1);
 	}

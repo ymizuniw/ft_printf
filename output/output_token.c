@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:06:43 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/03 01:57:52 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 04:23:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	output_token(const char *str, size_t len)
 {
 	size_t	written;
-	ssize_t	n;
+	int	n;
 
 	written = 0;
 	while (written < len)
@@ -27,5 +27,5 @@ int	output_token(const char *str, size_t len)
 			return (-1);
 		written += n;
 	}
-	return (written);
+	return ((int)written);
 }

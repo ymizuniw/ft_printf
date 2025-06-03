@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:11:04 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 02:53:48 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 07:28:04 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ t_list	*tokenize_format(const char *fmt)
 			token = get_conv_token(fmt, &place);
 		}
 		else
+		{
 			token = get_block_token(fmt, &place);
+		}
 		if (!token)
 			return (ft_lstclear(&head, free_token), NULL);
 		node = ft_lstnew(token);

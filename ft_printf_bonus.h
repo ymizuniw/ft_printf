@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 02:49:53 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 07:21:37 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ typedef struct s_token
 	char			*block;
 	t_format		*format;
 	char			*parsed_arg;
-	t_parts_out		*parts;
 	t_lens			*lens;
 }					t_token;
 
@@ -112,8 +111,8 @@ void				manage_flag_conflict(t_format *f);
 void				manage_flag_spec(t_format *f);
 
 // parse_format_utils
-int					is_flag(char c);
-int					is_specifier(char c);
+int					is_flag(const char c);
+int					is_specifier(const char c);
 t_token				*initialize_token(void);
 void				initialize_format(t_format *f);
 void				free_token(void *ptr);
@@ -143,6 +142,6 @@ void	set_output_str(char *output_str, t_parts_out *parts,
 
 // output
 int					output_token(const char *ouput_str, size_t len);
-int					output_list(t_list *node, size_t *total_len);
+int					output_list(t_list *node);
 
 #endif

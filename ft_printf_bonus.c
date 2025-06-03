@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:44:16 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/03 02:13:35 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 04:06:06 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 int	ft_printf(const char *format, ...)
 {
 	t_list	*head;
-	size_t	tmp_len;
-	size_t	total_len;
+	int		len;
 	va_list	ap;
 
-	tmp_len = 0;
-	total_len = 0;
 	va_start(ap, format);
 	head = tokenize_format(format);
 	if (!head)
@@ -35,19 +32,10 @@ int	ft_printf(const char *format, ...)
 		va_end(ap);
 		return (-1);
 	}
-	output_list(head, &total_len);
-	if (output_list(head, &total_len) < 0)
-{
+	len = output_list(head);
 	ft_lstclear(&head, free_token);
 	va_end(ap);
-	return (-1);
-}
-	tmp_len = total_len;
-	if (tmp_len > total_len)
-	{
-		va_end(ap);
+	if (len < 0)
 		return (-1);
-	}
-	va_end(ap);
-	return (total_len);
+	return (len);
 }
