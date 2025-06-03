@@ -6,9 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:28:22 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 13:58:26 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/03 02:01:19 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../ft_printf_bonus.h"
 
 char	*ft_ctoa(char c)
 {

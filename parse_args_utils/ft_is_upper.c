@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 13:06:29 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 15:35:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/03 02:01:12 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "../ft_printf_bonus.h"
 
 int	ft_is_upper(char c)
 {

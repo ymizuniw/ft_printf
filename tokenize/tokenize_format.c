@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:11:04 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/01 23:38:20 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 01:36:39 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 static t_token	*get_conv_token(const char *fmt, size_t *place);
 static t_token	*get_block_token(const char *fmt, size_t *place);
-static void		free_token(void *token_ptr);
 
-t_list	*tokenize_format(const char *fmt, va_list ap)
+t_list	*tokenize_format(const char *fmt)
 {
 	t_list	*head;
 	t_list	*node;
@@ -27,7 +26,7 @@ t_list	*tokenize_format(const char *fmt, va_list ap)
 	place = 0;
 	while (fmt[place])
 	{
-		if (fmt[place] == '%' && fmt[place + 1] && fmt[place + 1] != '%')
+		if (fmt[place] == '%' && fmt[place + 1])
 			token = get_conv_token(fmt, &place);
 		else
 			token = get_block_token(fmt, &place);
@@ -55,8 +54,8 @@ static t_token	*get_block_token(const char *fmt, size_t *place)
 	token->type = TXT;
 	token->block = ft_substr(fmt + *place, 0, len);
 	if (!token->block)
-		return (free(token->block), free(token), NULL);
-	initialize_format(fmt);
+		return (free(token), NULL);
+	*place += len;
 	return (token);
 }
 
@@ -64,41 +63,18 @@ static t_token	*get_conv_token(const char *fmt, size_t *place)
 {
 	t_token		*token;
 	t_format	*f;
-	size_t		start;
-	size_t		i;
 
-	start = *place + 1;
-	token = alloc_token();
+	token = initialize_token();
 	if (!token)
 		return (NULL);
 	token->type = CONV;
 	f = token->format;
+	if (!f)
+	{
+		free_token(token);
+		return (NULL);
+	}
+	(*place)++;
 	parse_format(fmt, token, f, place);
-}
-
-static void	free_token(void *ptr)
-{
-	t_token	*token;
-
-	token = (void *)ptr;
-	if (!token)
-		return ;
-	free(token->block);
-	free(token->format);
-	free(token);
-}
-
-static void	initialize_format(t_format *fmt)
-{
-	fmt->flag_minus = FALSE;
-	fmt->flag_zero = FALSE;
-	fmt->flag_hash = FALSE;
-	fmt->flag_plus = FALSE;
-	fmt->flag_space = FALSE;
-	fmt->width = 0;
-	fmt->width_from_args = FALSE;
-	fmt->precision = 0;
-	fmt->prec_from_args = FALSE;
-	fmt->precision_on = FALSE;
-	fmt->spec = 0;
+	return (token);
 }

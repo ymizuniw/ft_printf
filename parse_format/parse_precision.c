@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:25:57 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 13:41:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 01:19:27 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	parse_precision(const char *fmt, t_format *f, size_t *place)
 {
 	if (fmt[*place] == '.')
 	{
-		f->precision = TRUE;
+		f->precision_on = TRUE;
 		(*place)++;
 		if (fmt[*place] == '*')
 		{
 			f->prec_from_arg = TRUE;
 			(*place)++;
 		}
-		else if (ft_is_digit(fmt[*place]))
+		else if (ft_isdigit(fmt[*place]))
 		{
 			f->precision = ft_atoi(fmt + *place);
-			while (ft_is_digit(fmt[*place]))
+			while (ft_isdigit(fmt[*place]))
 				(*place)++;
 		}
 		else

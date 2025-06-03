@@ -6,20 +6,20 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:43:17 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 15:33:54 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/03 02:03:30 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-char	*utoa(unsigned int n)
+char	*ft_utoa(unsigned int n)
 {
 	char	buf[11];
 	char	*res;
 	int		buf_index;
 
 	if (n == 0)
-		return (ft_resdup("0"));
+		return (ft_strdup("0"));
 	buf_index = 0;
 	while (n > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:02:36 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 15:30:04 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 01:22:39 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	parse_flags(const char *fmt, t_format *f, size_t *place)
 			f->flag_zero = TRUE;
 		else if (fmt[*place] == '#')
 			f->flag_hash = TRUE;
-		(*place)++;
+		(place)++;
 	}
 }

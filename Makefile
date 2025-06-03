@@ -13,12 +13,13 @@
 NAME    = libftprintf.a
 
 # Directories
-SRC_DIRS = apply_format parse_args parse_format tokenize libft .
+SRC_DIRS = apply_format parse_args parse_args_utils parse_format tokenize output libft .
+
 INC      = -I. -Ilibft
 
 # Compiler and flags
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror -g
 
 # Find all .c files in directories
 SRCS    = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c))

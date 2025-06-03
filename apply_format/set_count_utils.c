@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:37:56 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 15:21:42 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/02 18:39:16 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ size_t	set_count_precision(t_format *f, size_t arg_len)
 	limit_len = 0;
 	if (f->spec == 'd' || f->spec == 'i')
 	{
-		if (f->precision > arg_len)
-			num_zero = f->precision - arg_len;
+		if ((size_t)f->precision > arg_len)
+			num_zero = (size_t)f->precision - arg_len;
 		return (num_zero + arg_len);
 	}
 	else if (f->spec == 's')
 	{
-		if (f->precision < arg_len)
+		if ((size_t)f->precision < arg_len)
 		{
 			limit_len = f->precision;
 			return (limit_len);
@@ -81,19 +81,19 @@ size_t	set_count_prefix(t_format *f, char *prefix)
 		return (0);
 }
 
-size_t	set_count_pad(t_format *f, t_lens lens)
+size_t	set_count_pad(t_format *f, t_lens *lens)
 {
-	if (f->width > lens.total)
-	{
-		if (f->flag_minus)
-			lens.pad_pos = BACK;
-		else if (f->flag_zero && !f->precision_on && is_num_spec(f->spec))
-			lens.padding_pos = MIDDLE;
-		else
-			lens.pad_pos = FRONT;
-		lens.pad = lens.width - lens.total;
-		return (lens.pad);
-	}
-	lens.pad_pos = NONE;
-	return (0);
+    if ((size_t)f->width > lens->total)
+    {
+        if (f->flag_minus)
+            lens->pad_pos = BACK;
+        else if (f->flag_zero && !f->precision_on && is_num_spec(f->spec))
+            lens->pad_pos = MIDDLE;
+        else
+            lens->pad_pos = FRONT;
+        lens->pad = f->width - lens->total;
+        return (lens->pad);
+    }
+    lens->pad_pos = NONE;
+    return (0);
 }

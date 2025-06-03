@@ -6,14 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:33:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 12:53:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/03 01:35:02 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-#include <stdlib.h>
+#include "../ft_printf_bonus.h"
 
-char	*ptoa(void *ptr)
+char	*ft_ptoa(void *ptr)
 {
 	size_t	addr;
 	size_t	len;
@@ -23,7 +22,7 @@ char	*ptoa(void *ptr)
 	if (!ptr)
 		return (ft_strdup("(nil)"));
 	addr = (size_t)ptr;
-	hex = xtoa(addr, 0);
+	hex = ft_xtoa(addr, 0);
 	if (!hex)
 		return (NULL);
 	len = ft_strlen(hex) + 2;

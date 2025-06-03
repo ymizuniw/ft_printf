@@ -6,9 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 14:19:41 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/05/31 15:33:21 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/03 00:27:54 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf_bonus.h"
+
+static void	manage_char_spec(t_format *f);
 
 void	manage_flag_spec(t_format *f)
 {
@@ -20,7 +24,7 @@ void	manage_flag_spec(t_format *f)
 	}
 	else if (f->spec == 'c' || f->spec == 's')
 		manage_char_spec(f);
-	else if (is_nume_spec(f->spec))
+	else if (is_num_spec(f->spec))
 	{
 		if (f->flag_plus && f->flag_space)
 			f->flag_space = FALSE;
