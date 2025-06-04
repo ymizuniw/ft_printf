@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 20:50:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 07:32:14 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/05 01:07:23 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_itoa_abs(int n)
 
 	if (n == 0)
 		return (ft_strdup("0"));
+	if (n == -2147483648)
+		return (ft_strdup("2147483648"));
 	if (n < 0)
 		num = -n;
 	else
