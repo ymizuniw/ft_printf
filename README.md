@@ -31,6 +31,77 @@ apply_format(t_token.conv, arg)
 >clang -fsanitize=address -g -o program main.c
 >./program
 
+・flag_hasか、t_bool(is_upper)か、何かが間違っている。
+→set_cout_prefixのあたりで、&& f->flag_hashという条件がある。これが怪しい。フラグの競合条件を見直す。
+→output_listに渡された時点で、token->parsed_arg のポインタの指す文字列は2A。パースargsが怪しい。
+→parse_argsの中身、arg_to_specが怪しい。arg_to_specに渡された時点では、x指定、
+→ == と = の使い間違い。特定！
+
+・パッディングが未出力→set_outputstrで出力文字列が正しく構成できていない　or　出力文字数が正しく設定されていない。
+→後者。set_ouput_str内でlens->total += buf_index(padding込みの文字列長プラス終端文字分)のように、正しく加算されていなかった。
+これのせいで、output_tokenが正しい出力文字数を受け取れず、出力にずれが生じていた。
+
+・符号表現に差異がある。-が正しく出力されていない。フラグの未更新が問題かもしれない。
+1. %010d 指定で負数が正数、正数が負数になるバグ？負数から負数は問題なし。
+→%-10dでも同じ現象を観測。
+→単体テストは通過。複数の出力がある際にフラグが初期化できていいない可能性が増加。
+→%10.5dでバグを観測。ここで問題が生じている可能性がある。
+→%10.5dの単体テストにて、num = -1234,負数の時に符号が消えている。原因を追求する。
+→ケース候補
+・itoa_absで絶対値に変換後、マイナスを付けるロジックが起動していない。フラグが反映されていないか、そもそもnum < 0ケースでマイナスを付与するロジックと接続していないか。
+具体関数
+set_count_signでsignをセットする条件がis_negativeであること。
+→見たところ、（フラグ）∧（is_negative）以外の条件で-がセットされていない。
+→条件を修正したところ、問題解決！
+
+・%iケースにて、%dのテストに連続して行うと正数に負の符号がつくバグが発生。フラグ管理の問題ではないかと思われる。初期化対象にis_negativeが含まれているか確認。
+→初期化対象にis_negativeが含まれていない。追加したところ、バグが修正された。解決！
+
+・UNSIGNEDのケースにて、空白とゼロがバッファが埋め尽くされるバグが発生。parse_argsが機能していないように見える。utoaを確認。
+→indexのインクリメントが欠落。各桁を逆順に格納したのに、返り値ようのバッファにその順番のまま詰めていた。修正したところ、動作が正常に戻った。解決！
+
+・%%のケースにて、%-5%の出力にパッディングが含まれている。動作の模倣という観点からは、すべてのフラグを無効にして%のみを出力する仕様にする必要がある。
+→spec != '%' を条件に各種フラグの出力などを行うように条件を変更すべきかもしれない。％ならば無条件でTXTに送るというのも、ありか。既に幅や精度を確保してしまったという状態にならないように、事前に弾いて置く必要がある。
+→manage_flag_specにて、spec == '%' ならば幅と精度を0に設定するように修正。→正常出力。　解決！
+
+・ダブルフリーを検知。単体テストでは問題ないが、複数になると発生する様子。
+
+1.UNSIGNED, HEXAl,HEXAu, PERCENT→正常
+2.CHAR, STRING, DECIMAL, INTEGER →ダブルフリー検知
+3.CHAR, STRING, DECIMAL →ダブルフリー検知
+4.CHAR, STRING, INTEGER →正常
+5.CHAR, INTEGER →正常
+6.CHAR, STRING, DECIMAL →ダブルフリー検知
+7.CHAR, DECIMAL →正常
+8.STRING, DECIMAL→セグフォ
+9.CHAR, STRING →正常
+10.without STRING →ダブルフリー検知
+11.without DECIMAL →ダブルフリー検知
+12.without STRING AND DECIMAL →正常
+
+
+原因候補
+・apply_formatが失敗したときのfreeは正確か？
+・無条件のフリーがダブっていないか？
+・すべてのフリーについて、どこで、なぜフリーしているのかを注釈。
+
+tokenize_format
+|
+|--initialize_token-if(!token->format)-free(token)
+|
+|--if(!token)-ft_lstclear(&head, free_token)
+|--if(!node)|-free_token(token)
+|           |-ft_lstclear(&head, free_token)
+|
+|--|--get_block_token-if(!token->block)-free(token)
+|  |--get_conv_token|-if(!f)-free_token(token)
+|                   |-if(f->spec == 0)-free(token)
+
+apply_format
+|
+|--if(!output_str)-free(parts.precision), return.
+|--free(parts.precision)
+|
 
 
 検討

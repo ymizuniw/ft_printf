@@ -19,11 +19,17 @@ INC      = -I. -Ilibft
 
 # Compiler and flags
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -g
+CFLAGS  = -Wall -Wextra -Werror -g -fsanitize=address
+
 
 # Find all .c files in directories
-SRCS    = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c))
+SRCS    = $(filter-out %/main.c, $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c)))
 OBJS    = $(SRCS:.c=.o)
+
+PROB = 1
+ifeq ($(PROB), 1)
+	CFLAGS += -DMALLOC_TEST
+endif
 
 # Default target
 all: $(NAME)

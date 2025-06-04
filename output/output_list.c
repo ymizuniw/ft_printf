@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 05:07:17 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 04:00:14 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 23:33:56 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 int	output_list(t_list *node)
 {
 	t_token	*token;
-	char *out_str;
-	int	out_len;
-	int	total_len;
+	char	*out_str;
+	int		out_len;
+	int		total_len;
 
+	total_len = 0;
 	while (node)
 	{
 		token = (t_token *)node->content;
@@ -30,10 +31,11 @@ int	output_list(t_list *node)
 			if (!out_str)
 				return (-1);
 			out_len = output_token((const char *)out_str, token->lens->total);
+			free(out_str);
 		}
 		else
 			return (-1);
-		if (out_len < 0)//
+		if (out_len < 0)
 			return (-1);
 		total_len += out_len;
 		node = node->next;

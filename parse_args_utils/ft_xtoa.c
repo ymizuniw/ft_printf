@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:29:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 04:57:09 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:43:08 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ char	*ft_xtoa(unsigned long n, t_bool is_upper)
 	char		*str;
 	int			j;
 
-	base = is_upper ? "0123456789ABCDEF" : "0123456789abcdef";
+	if (is_upper)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
 	if (n == 0)
 		return (ft_strdup("0"));
 	i = 0;

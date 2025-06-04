@@ -6,28 +6,39 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 07:21:37 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/05 00:18:04 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_BONUS_H
 # define FT_PRINTF_BONUS_H
 
-#include <stdio.h>
-
 # include "libft/libft.h"
 # include <stdarg.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-# ifndef BOOL_H
-#  define BOOL_H
-#  define TRUE 1
-#  define FALSE 0
+# ifndef PROB_MALLOC_H
+#  define PROB_MALLOC_H
+#include <stdlib.h>
+
+void *prob_malloc(size_t size);
+
+#ifdef MALLOC_TEST
+# define malloc(x) prob_malloc(x)
+#endif
+
+#endif
+
+#  ifndef BOOL_H
+#   define BOOL_H
+#   define TRUE 1
+#   define FALSE 0
 
 typedef int			t_bool;
 
-# endif
+#  endif
 
 // token type separation
 typedef enum e_token_type
@@ -100,13 +111,13 @@ int					ft_printf(const char *format, ...);
 t_list				*tokenize_format(const char *fmt);
 
 // parse_format
-void				parse_format(const char *fmt, t_format *f,
-						size_t *place);
+void				parse_format(const char *fmt, t_format *f, size_t *place);
 void				parse_flags(const char *fmt, t_format *f, size_t *place);
 void				parse_width(const char *fmt, t_format *f, size_t *place);
 void				parse_precision(const char *fmt, t_format *f,
 						size_t *place);
-t_bool				parse_specifier(const char *fmt, t_format *f, size_t *place);
+t_bool				parse_specifier(const char *fmt, t_format *f,
+						size_t *place);
 void				manage_flag_conflict(t_format *f);
 void				manage_flag_spec(t_format *f);
 
@@ -121,7 +132,7 @@ t_bool				parse_args(t_list *tokens, va_list ap);
 
 // parse_args_utils
 char				*ft_ctoa(char c);
-int					ft_is_upper(char c);
+t_bool				ft_is_upper(char c);
 char				*ft_itoa_abs(int n);
 char				*ft_ptoa(void *ptr);
 char				*ft_utoa(unsigned int n);
@@ -132,16 +143,15 @@ char				*apply_format(t_token *token, t_format *f);
 
 // apply_format_utils
 t_bool				is_num_spec(char spec);
-size_t	set_count_sign(t_format *f, char *sign);
-size_t	set_count_precision(t_format *f, size_t arg_len);
-size_t	set_count_prefix(t_format *f, char *prefix);
-size_t	set_count_pad(t_format *f, t_lens *lens);
-void	set_output_str(char *output_str, t_parts_out *parts,
+size_t				set_count_sign(t_format *f, char *sign);
+size_t				set_count_precision(t_format *f, size_t arg_len);
+size_t				set_count_prefix(t_format *f, char *prefix);
+size_t				set_count_pad(t_format *f, t_lens *lens);
+void				set_output_str(char *output_str, t_parts_out *parts,
 						t_lens *lens);
-
 
 // output
 int					output_token(const char *ouput_str, size_t len);
 int					output_list(t_list *node);
 
-#endif
+# endif

@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 13:06:29 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/03 02:01:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 19:24:19 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-int	ft_is_upper(char c)
+t_bool	ft_is_upper(char c)
 {
-	return (c = 'X');
+	return (c == 'X');
 }

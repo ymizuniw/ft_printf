@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 14:19:41 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/03 00:27:54 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 20:56:24 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ static void	manage_char_spec(t_format *f);
 
 void	manage_flag_spec(t_format *f)
 {
+	if (f->spec == '%')
+	{
+		f->width = 0;
+		f->precision = 0;
+	}
 	if (f->spec == 'p')
 	{
 		f->flag_plus = FALSE;

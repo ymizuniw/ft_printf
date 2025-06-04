@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_specifier.c                                  :+:      :+:    :+:   */
+/*   prob_malloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 04:31:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 18:47:13 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/06/05 00:09:25 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/06/05 00:30:04 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_bonus.h"
+#include "ft_printf_bonus.h"
+// #include "prob_malloc.h"
+#include <stdio.h>
+#include <time.h>
 
-t_bool	parse_specifier(const char *fmt, t_format *f, size_t *place)
+void *prob_malloc(size_t size)
 {
-	if (is_specifier(fmt[*place]))
+	if (rand() < (RAND_MAX / 1000))
 	{
-		f->spec = fmt[*place];
-		(*place)++;
-		return (TRUE);
+		fprintf(stderr, "malloc failed\n");
+		return NULL;
 	}
-	else
-	{
-		return (FALSE);
-	}
+	return malloc(size);
 }

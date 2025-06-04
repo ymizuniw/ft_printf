@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 05:11:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 07:15:09 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 22:48:51 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_bool	parse_args(t_list *head, va_list ap)
 
 static char	*arg_to_spec(t_format *f, va_list ap)
 {
-	int		arg;
+	int	arg;
 
 	if (!f)
 		return (NULL);

@@ -6,15 +6,16 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:18:35 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 07:32:54 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 23:05:18 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf_bonus.h"
 
-static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f, t_parts_out *parts);
+static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f,
+					t_parts_out *parts);
 static char		*apply_precision(t_format *f, char *arg, t_lens *lens);
-static void	initialize_len_and_parts(t_lens *lens, t_parts_out *parts);
+static void		initialize_len_and_parts(t_lens *lens, t_parts_out *parts);
 
 char	*apply_format(t_token *token, t_format *f)
 {
@@ -22,7 +23,7 @@ char	*apply_format(t_token *token, t_format *f)
 	t_lens		lens;
 	char		*output_str;
 
-	token->lens = malloc (sizeof(t_lens));
+	token->lens = malloc(sizeof(t_lens));
 	if (!token->lens)
 		return (NULL);
 	initialize_len_and_parts(&lens, &parts);
@@ -53,7 +54,8 @@ static void	initialize_len_and_parts(t_lens *lens, t_parts_out *parts)
 	parts->pad_len = 0;
 }
 
-static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f, t_parts_out *parts)
+static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f,
+		t_parts_out *parts)
 {
 	lens->prefix = set_count_prefix(f, parts->prefix);
 	lens->sign = set_count_sign(f, parts->sign);
@@ -71,7 +73,7 @@ static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f, t_parts_out *p
 static char	*apply_precision(t_format *f, char *arg, t_lens *lens)
 {
 	char	*res;
-	int	num_zeros;
+	int		num_zeros;
 
 	res = malloc(lens->prec + 1);
 	if (!res)

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:06:57 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 04:44:24 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 23:45:22 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 t_token	*initialize_token(void)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
 	token->block = NULL;
+	token->format = NULL;
 	token->parsed_arg = NULL;
 	token->lens = NULL;
 	token->format = malloc(sizeof(t_format));
@@ -42,6 +43,7 @@ void	initialize_format(t_format *f)
 	f->precision = 0;
 	f->prec_from_arg = FALSE;
 	f->precision_on = FALSE;
+	f->is_negative = FALSE;
 	f->spec = 0;
 }
 
@@ -55,5 +57,6 @@ void	free_token(void *ptr)
 	free(token->block);
 	free(token->format);
 	free(token->parsed_arg);
+	free(token->lens);
 	free(token);
 }

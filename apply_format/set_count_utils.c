@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:37:56 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 05:07:20 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/04 20:21:56 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ size_t	set_count_sign(t_format *f, char *sign)
 			*sign = ' ';
 		else if (f->flag_space && f->is_negative)
 			*sign = '-';
+		else if (f->is_negative)
+			*sign = '-';
 		return (1);
 	}
 	return (0);
@@ -40,7 +42,8 @@ size_t	set_count_precision(t_format *f, size_t arg_len)
 	size_t	num_zero;
 
 	num_zero = 0;
-	if (f->spec == 'd' || f->spec == 'i' || f->spec == 'x' || f->spec == 'X' || f->spec == 'u')
+	if (f->spec == 'd' || f->spec == 'i' || f->spec == 'x' || f->spec == 'X'
+		|| f->spec == 'u')
 	{
 		if (f->precision_on && (size_t)f->precision > arg_len)
 			num_zero = (size_t)f->precision - arg_len;
@@ -56,10 +59,9 @@ size_t	set_count_precision(t_format *f, size_t arg_len)
 	return (arg_len);
 }
 
-
 size_t	set_count_prefix(t_format *f, char *prefix)
 {
-	if ((f->spec == 'x' || f->spec == 'X') && f->flag_hash)
+	if ((f->spec == 'x' || f->spec == 'X') && f->flag_hash)//
 	{
 		if (f->spec == 'x')
 		{
@@ -79,17 +81,17 @@ size_t	set_count_prefix(t_format *f, char *prefix)
 
 size_t	set_count_pad(t_format *f, t_lens *lens)
 {
-    if (f->precision >= 0 && (size_t)f->width > lens->total)
-    {
-        if (f->flag_minus)
-            lens->pad_pos = BACK;
-        else if (f->flag_zero && !f->precision_on && is_num_spec(f->spec))
-            lens->pad_pos = MIDDLE;
-        else
-            lens->pad_pos = FRONT;
-        lens->pad = f->width - lens->total;
-        return (lens->pad);
-    }
-    lens->pad_pos = NONE;
-    return (0);
+	if (f->precision >= 0 && (size_t)f->width > lens->total)
+	{
+		if (f->flag_minus)
+			lens->pad_pos = BACK;
+		else if (f->flag_zero && !f->precision_on && is_num_spec(f->spec))
+			lens->pad_pos = MIDDLE;
+		else
+			lens->pad_pos = FRONT;
+		lens->pad = f->width - lens->total;
+		return (lens->pad);
+	}
+	lens->pad_pos = NONE;
+	return (0);
 }
