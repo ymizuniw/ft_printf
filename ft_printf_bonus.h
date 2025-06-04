@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 00:18:04 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/05 01:32:51 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# ifndef PROB_MALLOC_H
-#  define PROB_MALLOC_H
-#include <stdlib.h>
+// # ifndef PROB_MALLOC_H
+// #  define PROB_MALLOC_H
+// #include <stdlib.h>
 
-void *prob_malloc(size_t size);
+// void *prob_malloc(size_t size);
 
-#ifdef MALLOC_TEST
-# define malloc(x) prob_malloc(x)
-#endif
+// #ifdef MALLOC_TEST
+// # define malloc(x) prob_malloc(x)
+// #endif
 
 #endif
 
