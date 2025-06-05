@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   output_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 01:14:22 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 04:25:03 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/06/05 01:14:24 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/06/05 17:50:34 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	output_tokens(char **tokens, size_t token_array_size)
 {
-	va_list	ap;
-	int		token_array_size;
-	int		out_len;
-	char	**tokens;
+	size_t		i;
+	size_t		out_len;
 
+	i = 0;
 	out_len = 0;
-	va_start(ap, format);
-	token_array_size = search_size_token(format);
-	tokens = set_output_tokens(ap, format, token_array_size);
 	if (!tokens)
 		return (-1);
-	out_len = buffer_output(tokens);
-	va_end(ap);
-	free_tokens_all(t_index, token);
+	while (i < token_array_size && tokens[i])
+	{
+		out_len += write(1, tokens[i], ft_strlen(tokens[i]));
+		i++;
+	}
 	return (out_len);
 }

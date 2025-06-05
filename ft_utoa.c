@@ -1,51 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 04:19:09 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 04:21:01 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/06/05 11:38:01 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/06/05 14:01:23 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	search_size_token(const char *fmt)
+char	*ft_utoa(unsigned int u)
 {
-	int	i;
-	int	size;
+	unsigned int	num;
+	int				len;
+	char			*res;
 
-	i = 0;
-	size = 0;
-	while (fmt[i])
+	num = u;
+	len = 0;
+	if (num == 0)
+		return (ft_strndup("0", 1));
+	while (num > 0)
 	{
-		if (fmt[i] == '%')
-		{
-			i++;
-			if (fmt[i] == '%')
-				size++;
-			else
-			{
-				if (fmt[i] && is_spec(fmt[i]))
-					i++;
-				size++;
-			}
-		}
-		else
-			while (fmt[i] && fmt[i] != '%')
-				i++;
-		size++;
+		num /= 10;
+		len++;
 	}
-}
-
-free_all_tokens(char **tokens)
-{
-	int i;
-
-	i = 0;
-	while (tokens[i])
-		free(tokens[i++]);
-	free(tokens);
+	res = malloc(len + 1);
+	if (!res)
+		return (NULL);
+	res[len] = '\0';
+	while (len-- > 0)
+	{
+		res[len] = '0' + (u % 10);
+		u /= 10;
+	}
+	return (res);
 }

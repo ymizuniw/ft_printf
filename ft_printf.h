@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 01:14:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 04:25:03 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/05 19:52:31 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stdarg.h>
 # include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "libft/libft.h"
+
 // • %c Prints a single character.
 // • %s Prints a string (as defined by the common C convention).
 // • %p The void * pointer argument has to be printed in hexadecimal format.
@@ -44,26 +48,28 @@ typedef enum e_spec
 	P
 }			t_spec;
 
-// PRINTF
+// printf
 int			ft_printf(const char *format, ...);
 int			search_size_token(const char *fmt);
 void		free_all_tokens(char **tokens);
 
 // set_output_token
 char		**set_output_tokens(va_list ap, const char *fmt,
-				int token_array_size);
+				size_t token_array_size);
 char		*get_tmp_token(const char *fmt, size_t *i, va_list ap);
-void		free_from_error_tokens(size_t t_index, char **token);
 char		*ft_strndup(const char *str, size_t n);
 int			is_spec(const char c);
-int			find_spec(const char c);
+t_spec		find_spec(const char c);
 t_bool		ft_is_upper(const char c);
 
 char		*apply_format_to_args(va_list ap, const char spec);
 char		*ft_ctoa(const char c);
+// char		*ft_printf_str(va_list ap);
 char		*ft_ptoa(void *ptr);
-char		*ft_itoa(const int n);
+char		*ft_itoa_pf(const int n);
 char		*ft_utoa(const unsigned int u);
-char		*ft_xtoa(const long n, t_bool is_upper);
+char		*ft_xtoa(const unsigned long n, t_bool is_upper);
 
-int			output_tokens(void);
+int			output_tokens(char **tokens, size_t size_of_array);
+
+#endif

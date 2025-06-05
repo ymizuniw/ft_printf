@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 03:34:28 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 04:25:39 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/05 14:51:06 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_spec(const char c)
 		|| (c == 'x' || c == 'X') || (c == 'p'));
 }
 
-int	find_spec(const char c)
+t_spec	find_spec(const char c)
 {
 	if (c == 'c')
 		return (C);
@@ -48,13 +48,15 @@ char	*get_tmp_token(const char *fmt, size_t *i, va_list ap)
 	char	*tmp_token;
 	size_t	txt_len;
 
+	// if (!(*fmt) || !i)
+	// 	return (NULL);
 	if (fmt[*i] == '%')
 	{
 		(*i)++;
 		if (fmt[*i] && fmt[*i] == '%')
 			tmp_token = ft_strndup("%", 1);
 		else if (fmt[*i] && is_spec(fmt[*i]))
-			tmp_token = apply_format(ap, fmt[*i]);
+			tmp_token = apply_format_to_args(ap, fmt[*i]);
 		else
 			return (NULL);
 	}
