@@ -90,8 +90,8 @@ re: fclean all
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 test: main.c $(NAME) $(LIBFT)
-	$(CC) -fsanitize=address -g -no-pie $(INC) main.c $(NAME) $(LIBFT) -o a.out
-
+	$(CC)  -g -no-pie $(INC) main.c $(NAME) $(LIBFT) -o a.out
+# -fsanitize=address
 # cc main.c libftprintf.a libft/libft.a -Ilibft -Iinclude -o a.out
 
 .PHONY: all bonus test clean fclean re

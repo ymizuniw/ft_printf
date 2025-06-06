@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 04:19:09 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 14:18:25 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 23:17:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@ int	search_size_token(const char *fmt)
 			i++;
 			if (fmt[i] == '%')
 				size++;
-			else
+			else if (fmt[i] && is_spec((char)fmt[i]))
 			{
-				if (fmt[i] && is_spec((char)fmt[i]))
-					i++;
+				i++;
 				size++;
 			}
 		}
 		else
+		{
 			while (fmt[i] && fmt[i] != '%')
 				i++;
-		size++;
+			size++;
+		}
 	}
 	return (size);
 }

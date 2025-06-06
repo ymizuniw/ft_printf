@@ -6,12 +6,14 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 01:14:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/06 10:04:26 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 20:48:11 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# include <stdio.h>
 
 # include <stdarg.h>
 # include <stddef.h>

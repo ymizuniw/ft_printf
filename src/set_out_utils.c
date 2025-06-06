@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 03:34:28 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 14:51:06 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 23:14:36 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,49 +43,100 @@ t_spec	find_spec(const char c)
 		return (0);
 }
 
+
+///////
 char	*get_tmp_token(const char *fmt, size_t *i, va_list ap)
 {
-	char	*tmp_token;
+	// char	*tmp_token;
+	size_t	start;
 	size_t	txt_len;
 
-	// if (!(*fmt) || !i)
-	// 	return (NULL);
 	if (fmt[*i] == '%')
 	{
 		(*i)++;
 		if (fmt[*i] && fmt[*i] == '%')
-			tmp_token = ft_strndup("%", 1);
+			return (ft_strndup("%", 1));
 		else if (fmt[*i] && is_spec(fmt[*i]))
-			tmp_token = apply_format_to_args(ap, fmt[*i]);
+			return (apply_format_to_args(ap, fmt[*i]));
 		else
 			return (NULL);
 	}
 	else
 	{
-		txt_len = 0;
+		start = *i;
 		while (fmt[*i] && fmt[*i] != '%')
-			txt_len++;
-		tmp_token = ft_strndup(fmt + (*i), txt_len);
-		(*i) += txt_len - 1;
+			(*i)++;
+		txt_len = *i - start;
+		return (ft_strndup(fmt + start, txt_len));
 	}
-	return (tmp_token);
 }
+//////
 
+// char	*get_tmp_token(const char *fmt, size_t *i, va_list ap)
+// {
+// 	char	*tmp_token;
+// 	size_t	txt_len;
+
+// 	if (fmt[*i] == '%')
+// 	{
+// 		(*i)++;
+// 		if (fmt[*i] && fmt[*i] == '%')
+// 			tmp_token = ft_strndup("%", 1);
+// 		else if (fmt[*i] && is_spec(fmt[*i]))
+// 			tmp_token = apply_format_to_args(ap, fmt[*i]);
+// 		else
+// 			return (NULL);
+// 	}
+// 	else
+// 	{
+// 		txt_len = 0;
+// 		while (fmt[*i] && fmt[*i] != '%')
+// 			txt_len++;
+// 		tmp_token = ft_strndup(fmt + (*i), txt_len);
+// 		(*i) += txt_len - 1;
+// 	}
+// 	return (tmp_token);
+// }
+
+
+
+///////
 char	*ft_strndup(const char *str, size_t n)
 {
-	size_t	len;
 	char	*res;
+	size_t	i;
 
 	if (!str)
 		return (NULL);
-	len = 0;
-	while (*str && len < n)
-		len++;
-	res = malloc(len + 1);
+	res = malloc(n + 1);
 	if (!res)
 		return (NULL);
-	while (--len > 0)
-		res[len] = str[len];
-	res[len] = '\0';
+	i = 0;
+	while (i < n)
+	{
+		res[i] = str[i];
+		i++;
+	}
+	res[i] = '\0';
 	return (res);
 }
+//////
+
+// char	*ft_strndup(const char *str, size_t n)
+// {
+// 	size_t	len;
+// 	char	*res;
+
+// 	if (!str)
+// 		return (NULL);
+// 	len = 0;
+// 	while (*str++ && len < n)
+// 		len++;
+// 	res = malloc(len + 1);
+// 	if (!res)
+// 		return (NULL);
+// 	while (--len > 0)
+// 		res[len] = str[len];
+// 	res[len] = '\0';
+// 	return (res);
+// }
