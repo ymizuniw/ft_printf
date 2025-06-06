@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:33:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 17:31:49 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 09:58:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_bonus.h"
+#include "ft_printf_bonus.h"
 
 char	*ft_ptoa(void *ptr)
 {

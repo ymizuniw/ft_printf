@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:18:35 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 18:53:36 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 09:58:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_bonus.h"
+#include "ft_printf_bonus.h"
 
 static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f,
 					t_parts_out *parts);

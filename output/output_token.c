@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:06:43 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 19:06:59 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 09:58:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_bonus.h"
+#include "ft_printf_bonus.h"
 
 int	output_token(const char *str, size_t len)
 {

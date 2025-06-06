@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:11:04 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 23:59:49 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 09:58:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_bonus.h"
+#include "ft_printf_bonus.h"
 
 static t_token	*get_conv_token(const char *fmt, size_t *place);
 static t_token	*get_block_token(const char *fmt, size_t *place);

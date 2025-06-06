@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 01:14:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 19:52:31 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 10:04:26 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "libft.h"
 
 // • %c Prints a single character.
 // • %s Prints a string (as defined by the common C convention).

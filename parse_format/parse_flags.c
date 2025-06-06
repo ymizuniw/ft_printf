@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:02:36 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 04:19:53 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 09:57:55 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_bonus.h"
+#include "ft_printf_bonus.h"
 
 void	parse_flags(const char *fmt, t_format *f, size_t *place)
 {

@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 20:25:41 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/04 01:24:36 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 09:58:01 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_bonus.h"
+#include "ft_printf_bonus.h"
 
 int	is_flag(const char c)
 {

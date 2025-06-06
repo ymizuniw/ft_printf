@@ -6,14 +6,14 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 19:33:47 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/06 10:04:21 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_BONUS_H
 # define FT_PRINTF_BONUS_H
 
-# include "libft/libft.h"
+# include "libft.h"
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
