@@ -6,11 +6,19 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:29:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/06 09:58:43 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:42:48 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+
+static const char	*base_is(t_bool is_upper)
+{
+	if (is_upper)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+}
 
 char	*ft_xtoa(unsigned long n, t_bool is_upper)
 {
@@ -20,10 +28,7 @@ char	*ft_xtoa(unsigned long n, t_bool is_upper)
 	char		*str;
 	int			j;
 
-	if (is_upper)
-		base = "0123456789ABCDEF";
-	else
-		base = "0123456789abcdef";
+	base = base_is(is_upper);
 	if (n == 0)
 		return (ft_strdup("0"));
 	i = 0;

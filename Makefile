@@ -337,7 +337,16 @@ MAND_SRCS := parse_args_utils_mnd/ft_ctoa.c \
 			parse_args_utils_mnd/ft_utoa.c \
 			parse_args_utils_mnd/ft_xtoa.c \
 			parse_args_utils_mnd/ft_is_upper.c \
-			src/ft_printf.c
+			src/ft_printf.c \
+			src/initialize_and_alloc_tokens.c \
+			src/set_content_len.c \
+			src/set_token_content.c \
+			src/arg_to_ascii.c \
+			src/adjust_index.c \
+			src/output_tokens.c \
+			src/get_token_error_free.c \
+			src/destruct_tokens.c \
+			src/ft_is_spec.c
 
 BONUS_DIRS = apply_format parse_args parse_args_utils parse_format tokenize output libft .
 BONUS_SRCS = \

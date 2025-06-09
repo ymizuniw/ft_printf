@@ -6,11 +6,27 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 20:50:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/09 06:48:43 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:38:51 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+
+static char	*zero_min_n(int n)
+{
+	if (n == 0)
+		return (ft_strdup("0"));
+	else
+		return (ft_strdup("2147483648"));
+}
+
+static unsigned int	process_sign(int n)
+{
+	if (n < 0)
+		return (-n);
+	else
+		return (n);
+}
 
 char	*ft_itoa_abs(int n)
 {
@@ -20,15 +36,10 @@ char	*ft_itoa_abs(int n)
 	int				rev_index;
 	char			*str;
 
-	if (n == 0)
-		return (ft_strdup("0"));
-	if (n == -2147483648)
-		return (ft_strdup("2147483648"));
-	if (n < 0)
-		num = -n;
-	else
-		num = n;
+	if (n == 0 || n == -2147483648)
+		return (zero_imn_n(n));
 	buf_index = 0;
+	num = process_sign(n);
 	while (num > 0)
 	{
 		buf[buf_index++] = '0' + (num % 10);
