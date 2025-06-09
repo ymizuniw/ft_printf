@@ -1,53 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 04:19:09 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/06 23:17:13 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/12 18:43:17 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/06/09 07:42:21 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	search_size_token(const char *fmt)
+char	*ft_utoa(unsigned int n)
 {
-	int	i;
-	int	size;
+	char	buf[11];
+	char	*res;
+	int		buf_index;
+	int		buf_index_rev;
 
-	i = 0;
-	size = 0;
-	while (fmt[i])
+	if (n == 0)
+		return (ft_strdup("0"));
+	buf_index = 0;
+	while (n > 0)
 	{
-		if (fmt[i] == '%')
-		{
-			i++;
-			if (fmt[i] == '%')
-				size++;
-			else if (fmt[i] && is_spec((char)fmt[i]))
-			{
-				i++;
-				size++;
-			}
-		}
-		else
-		{
-			while (fmt[i] && fmt[i] != '%')
-				i++;
-			size++;
-		}
+		buf[buf_index++] = '0' + (n % 10);
+		n /= 10;
 	}
-	return (size);
-}
-
-void	free_all_tokens(char **tokens)
-{
-	int i;
-
-	i = 0;
-	while (tokens[i])
-		free(tokens[i++]);
-	free(tokens);
+	res = malloc(buf_index + 1);
+	if (!res)
+		return (NULL);
+	res[buf_index] = '\0';
+	buf_index_rev = 0;
+	while (--buf_index >= 0)
+		res[buf_index_rev++] = buf[buf_index];
+	return (res);
 }

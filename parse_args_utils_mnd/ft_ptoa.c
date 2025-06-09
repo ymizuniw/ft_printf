@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa.c                                          :+:      :+:    :+:   */
+/*   ft_ptoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:38:01 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 14:01:23 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/30 22:33:00 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/06/09 10:07:28 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_utoa(unsigned int u)
+char	*ft_ptoa(void *ptr)
 {
-	unsigned int	num;
-	int				len;
-	char			*res;
+	size_t	addr;
+	size_t	len;
+	char	*hex;
+	char	*result;
 
-	num = u;
-	len = 0;
-	if (num == 0)
-		return (ft_strndup("0", 1));
-	while (num > 0)
-	{
-		num /= 10;
-		len++;
-	}
-	res = malloc(len + 1);
-	if (!res)
+	if (!ptr)
+		return (ft_strdup("(nil)"));
+	addr = (size_t)ptr;
+	hex = ft_xtoa(addr, 0);
+	if (!hex)
 		return (NULL);
-	res[len] = '\0';
-	while (len-- > 0)
-	{
-		res[len] = '0' + (u % 10);
-		u /= 10;
-	}
-	return (res);
+	len = ft_strlen(hex) + 2;
+	result = malloc(len + 1);
+	if (!result)
+		return (free(hex), NULL);
+	result[0] = '0';
+	result[1] = 'x';
+	ft_memcpy(result + 2, hex, len - 2);
+	result[len] = '\0';
+	free(hex);
+	return (result);
 }

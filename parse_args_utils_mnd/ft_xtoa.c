@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   output_tokens.c                                    :+:      :+:    :+:   */
+/*   ft_xtoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 01:14:24 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/05 17:50:34 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/30 22:29:19 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/06/09 10:05:53 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	output_tokens(char **tokens, size_t token_array_size)
+char	*ft_xtoa(unsigned long n, t_bool is_upper)
 {
-	size_t		i;
-	size_t		out_len;
+	char		buf[17];
+	const char	*base;
+	int			i;
+	char		*str;
+	int			j;
 
+	if (is_upper)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+	if (n == 0)
+		return (ft_strdup("0"));
 	i = 0;
-	out_len = 0;
-	if (!tokens)
-		return (-1);
-	while (i < token_array_size && tokens[i])
+	while (n > 0)
 	{
-		out_len += write(1, tokens[i], ft_strlen(tokens[i]));
-		i++;
+		buf[i++] = base[n % 16];
+		n /= 16;
 	}
-	return (out_len);
+	str = malloc(i + 1);
+	if (!str)
+		return (NULL);
+	str[i] = '\0';
+	j = 0;
+	while (i-- > 0)
+		str[j++] = buf[i];
+	return (str);
 }

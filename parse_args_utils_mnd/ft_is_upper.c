@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctoa.c                                          :+:      :+:    :+:   */
+/*   ft_is_upper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 22:28:22 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/09 06:59:00 by ymizuniw         ###   ########.fr       */
+/*   Created: 2025/05/31 13:06:29 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/06/09 07:43:17 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
-char	*ft_ctoa(char c)
+t_bool	ft_is_upper(char c)
 {
-	char	*str;
-
-	str = malloc(2);
-	if (!str)
-		return (NULL);
-	str[0] = c;
-	str[1] = '\0';
-	return (str);
+	return (c == 'X');
 }
