@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 04:55:29 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/09 17:30:44 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 03:53:42 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,27 @@
 
 int	ft_printf(const char *fmt, ...)
 {
-	t_tk_params	*tk_params;
-	char		**tokens;
+	t_tk_params	tk_params;
+	t_token		*tokens;
 	va_list		ap;
 	va_list		aq;
 
 	va_start(ap, fmt);
 	va_copy(aq, ap);
-	tk_params = NULL;
 	tokens = NULL;
-	if (initialize_and_alloc_tokens(tokens, tk_params) < 0)
+	if (initialize_and_alloc_tokens(fmt, &tokens, &tk_params) < 0)
 		return (-1);
-	while (tk_params->tk_index < tk_params->token_array_size)
+	while (tk_params.tk_index < tk_params.token_array_size)
 	{
-		tk_params->token_start_index = tk_params->fmt_index;
-		if (set_content_len(fmt, tk_params, aq) < 0 || set_token_content(fmt,
-				tokens, tk_params, ap) < 0)
+		if (set_content_len(fmt, &tk_params, aq) < 0 || set_token_content(fmt,
+				tokens, &tk_params, ap) < 0)
 			return (-1);
-		adjust_index(fmt, tk_params->token_start_index, tk_params);
+		adjust_index(fmt, &tk_params);
 	}
-	while (tk_params->token_array_size > tk_params->count_out_tokens)
-		output_tokens(tokens, tk_params);
-	destruct_tokens(tokens, tk_params->token_array_size);
+	while (tk_params.token_array_size > tk_params.count_out_tokens)
+		output_tokens(tokens, &tk_params);
+	destruct_tokens(tokens, tk_params.token_array_size);
 	va_end(aq);
 	va_end(ap);
-	return (tk_params->out_len);
+	return (tk_params.out_len);
 }

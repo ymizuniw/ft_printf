@@ -49,88 +49,103 @@ int	main(void)
 {
 	int std_ret, ft_ret;
 
-	// %c
-	std_ret = printf("%c ", '0' + 256);
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf("%c ", '0' + 256);
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	int ret_ori, ret_my;
+	int ori2, my2;
+	int ori3, my3;
 
-	std_ret = printf(" %c %c %c ", '0', 0, '1');
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %c %c %c ", '0', 0, '1');
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	ret_ori = printf("%c %c %c\n", '0', 0, '1');
+	ret_my = ft_printf("%c %c %c\n", '0', 0, '1');
 
-	std_ret = printf(" %c %c %c ", '2', '1', 0);
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %c %c %c ", '2', '1', 0);
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	printf("original: %i\n mine: %i\n", ret_ori, ret_my);
 
-	std_ret = printf(" %c %c %c ", 0, '1', '2');
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %c %c %c ", 0, '1', '2');
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	ori2 = printf("%c %c %c\n", '2', '1', 0);
+	my2 = ft_printf("%c %c %c\n", '2', '1', 0);
 
-	// %s
-	std_ret = printf("%s ", "");
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf("%s ", "");
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	printf("original: %i\n mine: %i\n", ori2, my2);
 
-	std_ret = printf(" NULL %s NULL ", NULL);
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" NULL %s NULL ", NULL);
-	printf("← ft_printf ret = %d\n\n", ft_ret);
 
-	// %x
-	std_ret = printf(" %x ", (unsigned long)LONG_MAX);
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %x ", (unsigned long)LONG_MAX);
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // %c
+	// std_ret = printf("%c ", '0' + 256);
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf("%c ", '0' + 256);
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
 
-	std_ret = printf(" %x ", (unsigned long)LONG_MIN);
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %x ", (unsigned long)LONG_MIN);
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	// std_ret = printf(" %c %c %c ", '0', 0, '1');
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %c %c %c ", '0', 0, '1');
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
 
-	std_ret = printf(" %x ", UINT_MAX);
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %x ", UINT_MAX);
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	// std_ret = printf(" %c %c %c ", '2', '1', 0);
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %c %c %c ", '2', '1', 0);
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
 
-	std_ret = printf(" %x ", (unsigned long)ULONG_MAX);
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %x ", (unsigned long)ULONG_MAX);
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	// std_ret = printf(" %c %c %c ", 0, '1', '2');
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %c %c %c ", 0, '1', '2');
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
 
-	std_ret = printf(" %x ", (unsigned long long)9223372036854775807LL);
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %x ", (unsigned long long)9223372036854775807LL);
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // %s
+	// std_ret = printf("%s ", "");
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf("%s ", "");
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
 
-	std_ret = printf(" %x %x %x %x %x %x %x",
-		INT_MAX, INT_MIN, (int)LONG_MAX, (int)LONG_MIN,
-		(int)ULONG_MAX, 0, -42);
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %x %x %x %x %x %x %x",
-		INT_MAX, INT_MIN, (int)LONG_MAX, (int)LONG_MIN,
-		(int)ULONG_MAX, 0, -42);
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	// std_ret = printf(" NULL %s NULL ", NULL);
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" NULL %s NULL ", NULL);
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
 
-	// %%
-	std_ret = printf(" %%  %%  %% ");
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %%  %%  %% ");
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // %x
+	// std_ret = printf(" %x ", (unsigned long)LONG_MAX);
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %x ", (unsigned long)LONG_MAX);
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
 
-	std_ret = printf(" %%   %%   %% ");
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf(" %%   %%   %% ");
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	// std_ret = printf(" %x ", (unsigned long)LONG_MIN);
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %x ", (unsigned long)LONG_MIN);
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
 
-	std_ret = printf("%% %%");
-	printf("← printf ret = %d\n", std_ret);
-	ft_ret = ft_printf("%% %%");
-	printf("← ft_printf ret = %d\n\n", ft_ret);
+	// std_ret = printf(" %x ", UINT_MAX);
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %x ", UINT_MAX);
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
+
+	// std_ret = printf(" %x ", (unsigned long)ULONG_MAX);
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %x ", (unsigned long)ULONG_MAX);
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
+
+	// std_ret = printf(" %x ", (unsigned long long)9223372036854775807LL);
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %x ", (unsigned long long)9223372036854775807LL);
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
+
+	// std_ret = printf(" %x %x %x %x %x %x %x",
+	// 	INT_MAX, INT_MIN, (int)LONG_MAX, (int)LONG_MIN,
+	// 	(int)ULONG_MAX, 0, -42);
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %x %x %x %x %x %x %x",
+	// 	INT_MAX, INT_MIN, (int)LONG_MAX, (int)LONG_MIN,
+	// 	(int)ULONG_MAX, 0, -42);
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
+
+	// // %%
+	// std_ret = printf(" %%  %%  %% ");
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %%  %%  %% ");
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
+
+	// std_ret = printf(" %%   %%   %% ");
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf(" %%   %%   %% ");
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
+
+	// std_ret = printf("%% %%");
+	// printf("← printf ret = %d\n", std_ret);
+	// ft_ret = ft_printf("%% %%");
+	// printf("← ft_printf ret = %d\n\n", ft_ret);
 
 	return (0);
 }
