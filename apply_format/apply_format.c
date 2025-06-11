@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:18:35 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 10:24:15 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 11:52:26 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	initialize_len_and_parts(t_lens *lens, t_parts_out *parts)
 static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f,
 		t_parts_out *parts)
 {
-	lens->prefix = set_count_prefix(f, parts->prefix);
+	lens->prefix = set_count_prefix(f, parts->prefix, token->parsed_arg);
 	lens->sign = set_count_sign(f, parts->sign);
 	if (f->spec == 'c' && token->parsed_arg[0] == '\0')
 	{

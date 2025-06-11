@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 05:11:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 10:07:31 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 11:43:19 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ static char	*s_or_p(t_format *f, va_list ap)
 		ptr = va_arg(ap, void *);
 		if (ptr)
 			return (ft_ptoa(ptr));
+		else
+			return (ft_strndup("(nil)", 5));
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 20:25:41 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/06 09:58:01 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:54:05 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int	is_flag(const char c)
 int	is_specifier(const char c)
 {
 	return (c == 'c' || c == 's' || c == 'd' || c == 'i' || c == 'u' || c == 'x'
-		|| c == 'X' || c == '%');
+		|| c == 'X' || c == 'p' || c == '%');
 }
