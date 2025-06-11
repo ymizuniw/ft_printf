@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:11:04 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/06 09:58:43 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 13:41:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ t_list	*tokenize_format(const char *fmt)
 			token = get_conv_token(fmt, &place);
 		}
 		else
-		{
 			token = get_block_token(fmt, &place);
-		}
 		if (!token)
 			return (ft_lstclear(&head, free_token), NULL);
 		node = ft_lstnew(token);
 		if (!node)
-			return (free_token(token), ft_lstclear(&head, free_token), NULL);
+			return (ft_lstclear(&head, free_token), NULL);
 		ft_lstadd_back(&head, node);
 	}
 	return (head);
@@ -61,9 +59,8 @@ static t_token	*get_block_token(const char *fmt, size_t *place)
 	token->parsed_arg = NULL;
 	token->lens = NULL;
 	token->format = NULL;
-
 	if (!token->block)
-		return (free(token), NULL);
+		return (NULL);
 	*place += len;
 	return (token);
 }
@@ -79,15 +76,9 @@ static t_token	*get_conv_token(const char *fmt, size_t *place)
 	token->type = CONV;
 	f = token->format;
 	if (!f)
-	{
-		free_token(token);
 		return (NULL);
-	}
 	parse_format(fmt, f, place);
 	if (f->spec == 0)
-	{
-		free_token(token);
 		return (NULL);
-	}
 	return (token);
 }

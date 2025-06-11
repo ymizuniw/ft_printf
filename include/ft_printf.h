@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 01:14:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 11:46:47 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:25:01 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ typedef int	t_bool;
 
 typedef struct s_token
 {
-	char *content;
-	char spec;
-}	t_token;
+	char	*content;
+	char	spec;
+}			t_token;
 
 typedef struct s_tk_params
 {
@@ -60,7 +60,8 @@ typedef struct s_tk_params
 int			ft_printf(const char *fmt, ...);
 
 // main_scope
-int			initialize_and_alloc_tokens(const char *fmt, t_token **tokens, t_tk_params *tk_params);
+int			initialize_and_alloc_tokens(const char *fmt, t_token **tokens,
+				t_tk_params *tk_params);
 int			set_content_len(const char *fmt, t_tk_params *tk_params,
 				va_list aq);
 int			set_token_content(const char *fmt, t_token *tokens,
@@ -77,10 +78,8 @@ char		*ft_ctoa(const char c);
 char		*ft_ptoa(void *ptr);
 char		*ft_utoa(unsigned int n);
 char		*ft_xtoa(unsigned long n, t_bool is_upper);
-// t_bool		ft_is_upper(char c);
 
 // other_utils
-// char		*ft_strndup(const char *src, size_t n);
 char		*arg_to_ascii(const char spec, va_list aq);
 t_bool		ft_is_spec(const char c);
 

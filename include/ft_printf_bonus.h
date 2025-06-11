@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 11:49:44 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:52:12 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-
 // # ifndef PROB_MALLOC_H
 // #  define PROB_MALLOC_H
 // #include <stdlib.h>
@@ -30,14 +29,14 @@
 // # define malloc(x) prob_malloc(x)
 // #endif
 
-#  ifndef BOOL_H
-#   define BOOL_H
-#   define TRUE 1
-#   define FALSE 0
+# ifndef BOOL_H
+#  define BOOL_H
+#  define TRUE 1
+#  define FALSE 0
 
 typedef int			t_bool;
 
-#  endif
+# endif
 
 // token type separation
 typedef enum e_token_type
@@ -144,14 +143,14 @@ char				*apply_format(t_token *token, t_format *f);
 t_bool				is_num_spec(char spec);
 size_t				set_count_sign(t_format *f, char *sign);
 size_t				set_count_precision(t_format *f, size_t arg_len);
-size_t				set_count_prefix(t_format *f, char *prefix, char *parsed_arg);
+size_t				set_count_prefix(t_format *f, char *prefix,
+						char *parsed_arg);
 size_t				set_count_pad(t_format *f, t_lens *lens);
 void				set_output_str(char *output_str, t_parts_out *parts,
 						t_lens *lens);
 
 // output
 int					output_token(const char *ouput_str, size_t len, int spec);
-// int					output_token(const char *ouput_str, size_t len, char spec);
 int					output_list(t_list *node);
 
 #endif

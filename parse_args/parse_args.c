@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 05:11:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 11:43:19 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:12:18 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static char	*s_or_p(t_format *f, va_list ap)
 	{
 		str = va_arg(ap, char *);
 		if (!str)
-			return (ft_strndup("(null)",6));
+			return (ft_strndup("(null)", 6));
 		return (ft_strdup(str));
 	}
 	else if (f->spec == 'p')

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:09:07 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 04:10:44 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:34:28 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	output_tokens(t_token *tokens, t_tk_params *tk_params)
 	if (tk_params->out_len < 0)
 	{
 		get_token_error_free(tokens, tk_params->count_out_tokens),
-			ft_putstr_fd("output failed", 1);
+		ft_putstr_fd("output failed", 1);
 		return ;
 	}
 	tk_params->count_out_tokens++;

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:37:56 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 12:09:53 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:40:21 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ size_t	set_count_precision(t_format *f, size_t arg_len)
 
 size_t	set_count_prefix(t_format *f, char *prefix, char *parsed_arg)
 {
-	if ((f->spec == 'x' || f->spec == 'X') && f->flag_hash && *parsed_arg != '0')
+	if ((f->spec == 'x' || f->spec == 'X') && f->flag_hash
+		&& *parsed_arg != '0')
 	{
 		if (f->spec == 'x')
 		{

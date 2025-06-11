@@ -6,23 +6,24 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:02:59 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 08:33:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:13:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*get_token_content(const char *fmt, t_token *tokens, t_tk_params *tk_params,
-		va_list ap)
+static char	*get_token_content(const char *fmt, t_token *tokens,
+		t_tk_params *tk_params, va_list ap)
 {
 	char	*arg;
 	char	spec;
 
 	if (fmt[tk_params->fmt_index] && fmt[tk_params->fmt_index] != '%')
-		return (ft_strndup(fmt + tk_params->fmt_index, (size_t)tk_params->txt_or_arg_len));
-	else if (fmt[tk_params->fmt_index] == '%' && ft_is_spec(fmt[tk_params->fmt_index + 1]))
+		return (ft_strndup(fmt + tk_params->fmt_index,
+				(size_t)tk_params->txt_or_arg_len));
+	else if (fmt[tk_params->fmt_index] == '%'
+		&& ft_is_spec(fmt[tk_params->fmt_index + 1]))
 	{
-		// tk_params->fmt_index++;
 		spec = fmt[tk_params->fmt_index + 1];
 		tokens[tk_params->tk_index].spec = spec;
 		arg = arg_to_ascii(spec, ap);
@@ -34,8 +35,8 @@ static char	*get_token_content(const char *fmt, t_token *tokens, t_tk_params *tk
 		return (NULL);
 }
 
-int	set_token_content(const char *fmt, t_token *tokens,
-		t_tk_params *tk_params, va_list ap)
+int	set_token_content(const char *fmt, t_token *tokens, t_tk_params *tk_params,
+		va_list ap)
 {
 	char	*tmp_token_content;
 

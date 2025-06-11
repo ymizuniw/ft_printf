@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:06:57 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 11:14:18 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 13:49:35 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ t_token	*initialize_token(void)
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
-	token->block = NULL;
 	token->format = NULL;
+	token->block = NULL;
 	token->parsed_arg = NULL;
 	token->lens = NULL;
 	token->format = malloc(sizeof(t_format));
 	if (!token->format)
-		return (free(token), NULL);
+		return (NULL);
 	token->type = CONV;
 	initialize_format(token->format);
 	return (token);
@@ -47,16 +47,21 @@ void	initialize_format(t_format *f)
 	f->spec = 0;
 }
 
-void	free_token(void *ptr)
+void	free_token(void *tk_ptr)
 {
 	t_token	*token;
 
-	token = ptr;
+	token = tk_ptr;
 	if (!token)
 		return ;
-	free(token->block);
-	free(token->format);
-	free(token->parsed_arg);
-	free(token->lens);
-	free(token);
+	if (token->block)
+		free(token->block);
+	if (token->parsed_arg)
+		free(token->parsed_arg);
+	if (token->lens)
+		free(token->lens);
+	if (token->format)
+		free(token->format);
+	if (token)
+		free(token);
 }
