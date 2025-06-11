@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 13:55:15 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 14:14:43 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,15 @@
 
 # include "libft.h"
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-// # ifndef PROB_MALLOC_H
-// #  define PROB_MALLOC_H
-// #include <stdlib.h>
-
-// void *prob_malloc(size_t size);
-
-// #ifdef MALLOC_TEST
-// # define malloc(x) prob_malloc(x)
-// #endif
 
 # ifndef BOOL_H
 #  define BOOL_H
 #  define TRUE 1
 #  define FALSE 0
-
-#ifndef TEST_MALLOC_H
-#define TEST_MALLOC_H
-
-#include <stdlib.h>
-#include <stdio.h>
-
-// グローバルに呼び出しカウンタと失敗トリガ
-extern size_t g_malloc_count;
-extern size_t g_malloc_fail_at;
-
-void	*test_malloc(size_t size);
-
-// malloc マクロを置換
-#define malloc(size) test_malloc(size)
-
+typedef int	t_bool;
 #endif
-
-
-typedef int			t_bool;
-
-# endif
 
 // token type separation
 typedef enum e_token_type
