@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:29:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/09 17:42:48 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 04:15:53 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 static const char	*base_is(t_bool is_upper)
 {
+	const char *base;
+
 	if (is_upper)
 		base = "0123456789ABCDEF";
 	else
 		base = "0123456789abcdef";
+	return(base);
 }
 
 char	*ft_xtoa(unsigned long n, t_bool is_upper)

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 05:07:17 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/06 09:58:43 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:28:37 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	output_list(t_list *node)
 			out_str = apply_format(token, token->format);
 			if (!out_str)
 				return (-1);
-			out_len = output_token((const char *)out_str, token->lens->total);
+			out_len = output_token((const char *)out_str, token->lens->total,
+					token->format->spec);
 			free(out_str);
 		}
 		else

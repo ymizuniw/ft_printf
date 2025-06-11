@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 20:50:25 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/09 17:38:51 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 04:15:14 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_itoa_abs(int n)
 	char			*str;
 
 	if (n == 0 || n == -2147483648)
-		return (zero_imn_n(n));
+		return (zero_min_n(n));
 	buf_index = 0;
 	num = process_sign(n);
 	while (num > 0)

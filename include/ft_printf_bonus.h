@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/09 03:26:27 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 09:06:23 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
 
 // # ifndef PROB_MALLOC_H
 // #  define PROB_MALLOC_H
@@ -149,7 +150,8 @@ void				set_output_str(char *output_str, t_parts_out *parts,
 						t_lens *lens);
 
 // output
-int					output_token(const char *ouput_str, size_t len);
+int					output_token(const char *ouput_str, size_t len, int spec);
+// int					output_token(const char *ouput_str, size_t len, char spec);
 int					output_list(t_list *node);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:37:56 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/09 17:44:13 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:16:02 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ size_t	set_count_prefix(t_format *f, char *prefix)
 
 size_t	set_count_pad(t_format *f, t_lens *lens)
 {
-	if (f->precision >= 0 && (size_t)f->width > lens->total)
+	if ((size_t)f->width > lens->total)
 	{
 		if (f->flag_minus)
 			lens->pad_pos = BACK;

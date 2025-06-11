@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:18:35 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/06 09:58:43 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:24:15 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,13 @@ static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f,
 {
 	lens->prefix = set_count_prefix(f, parts->prefix);
 	lens->sign = set_count_sign(f, parts->sign);
-	lens->arg = ft_strlen((const char *)token->parsed_arg);
+	if (f->spec == 'c' && token->parsed_arg[0] == '\0')
+	{
+		lens->arg = 1;
+		lens->prec = 1;
+	}
+	else
+		lens->arg = ft_strlen((const char *)token->parsed_arg);
 	lens->prec = set_count_precision(f, lens->arg);
 	lens->total = lens->prefix + lens->sign + lens->prec;
 	lens->pad = set_count_pad(f, lens);
@@ -78,13 +84,22 @@ static char	*apply_precision(t_format *f, char *arg, t_lens *lens)
 	res = malloc(lens->prec + 1);
 	if (!res)
 		return (NULL);
+	ft_memset(res, 0, lens->prec + 1);
 	if (f->spec == 's')
-		ft_strlcpy(res, arg, lens->prec + 1);
+	{
+		if (f->precision_on && f->precision == 0)
+			res[0] = '\0';
+		else
+		{
+			ft_strlcpy(res, arg, lens->prec + 1);
+		}
+	}
 	else
 	{
 		num_zeros = lens->prec - lens->arg;
 		ft_memset(res, '0', num_zeros);
 		ft_strlcpy(res + num_zeros, arg, lens->arg + 1);
 	}
+	res[lens->prec] = '\0';
 	return (res);
 }

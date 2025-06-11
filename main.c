@@ -1,151 +1,102 @@
-// #include "include/ft_printf.h"
-// #include <stdio.h>
-// #include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/11 04:49:41 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/06/11 10:09:26 by ymizuniw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// int	main(void)
-// {
-// 	char	c;
-// 	const char	*s;
-// 	int		d;
+#include "ft_printf_bonus.h"
 
-// 	c = 'A';
-// 	s = "fff";
-// 	d = 15;
-// 	// printf("%s\n", s);
-// 	ft_printf("\n");
-// 	return (0);
-// }
-
-// cc main.c src/*.c src/parse_args_utils_mnd/*.c libft/*.c
-
-// //mandatory
-// //C
-// 	TEST(4, print("%c ", '0' + 256));
-// 	TEST(5, print(" %c %c %c ", '0', 0, '1'));
-
-// 	TEST(8, print(" %c %c %c ", '2', '1', 0));
-// 	TEST(9, print(" %c %c %c ", 0, '1', '2'));
-// //S
-// 	TEST(3, print("%s ", ""));
-// 	TEST(10, print(" NULL %s NULL ", NULL));
-
-// //x
-// 	TEST(24, print(" %x ", LONG_MAX));
-// 	TEST(25, print(" %x ", LONG_MIN));
-// 	TEST(26, print(" %x ", UINT_MAX));
-// 	TEST(27, print(" %x ", ULONG_MAX));
-// 	TEST(28, print(" %x ", 9223372036854775807LL));
-// 	TEST(29, print(" %x %x %x %x %x %x %x", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
-// //%
-// 	TEST(4, print(" %%  %%  %% "));
-// 	TEST(5, print(" %%   %%   %% "));
-// 	TEST(7, print("%% %%"));
-
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
-
-int	main(void)
+int main (void)
 {
-	int std_ret, ft_ret;
+	int ori,my;
 
-	int ret_ori, ret_my;
-	int ori2, my2;
-	int ori3, my3;
+	ori = printf(" %-1c %2c %-3c ", '0', 0, '1');
+	printf("\n");
+	my = ft_printf(" %-1c %2c %-3c ", '0', 0, '1');
+	ft_printf("\n");
 
-	ret_ori = printf("%c %c %c\n", '0', 0, '1');
-	ret_my = ft_printf("%c %c %c\n", '0', 0, '1');
+	ft_printf("%d, %d\n", ori, my);
 
-	printf("original: %i\n mine: %i\n", ret_ori, ret_my);
-
-	ori2 = printf("%c %c %c\n", '2', '1', 0);
-	my2 = ft_printf("%c %c %c\n", '2', '1', 0);
-
-	printf("original: %i\n mine: %i\n", ori2, my2);
+	// // TEST 20: %2p with -1
+	// printf(" %2p ", (void *)-1);
+	// printf("\n");
+	// ft_printf(" %2p ", (void *)-1);
+	// ft_printf("\n");
 
 
-	// // %c
-	// std_ret = printf("%c ", '0' + 256);
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf("%c ", '0' + 256);
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 22: %-2p with 1
+	// printf(" %-2p ", (void *)1);
+	// printf("\n");
+	// ft_printf(" %-2p ", (void *)1);
+	// ft_printf("\n");
 
-	// std_ret = printf(" %c %c %c ", '0', 0, '1');
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %c %c %c ", '0', 0, '1');
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 23: %-2p with 15
+	// printf(" %-2p ", (void *)15);
+	// printf("\n");
+	// ft_printf(" %-2p ", (void *)15);
+	// ft_printf("\n");
 
-	// std_ret = printf(" %c %c %c ", '2', '1', 0);
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %c %c %c ", '2', '1', 0);
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 24: %-3p with 16
+	// printf(" %-3p ", (void *)16);
+	// printf("\n");
+	// ft_printf(" %-3p ", (void *)16);
+	// ft_printf("\n");
 
-	// std_ret = printf(" %c %c %c ", 0, '1', '2');
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %c %c %c ", 0, '1', '2');
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 25: %-4p with 17
+	// printf(" %-4p ", (void *)17);
+	// printf("\n");
+	// ft_printf(" %-4p ", (void *)17);
+	// ft_printf("\n");
 
-	// // %s
-	// std_ret = printf("%s ", "");
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf("%s ", "");
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 26: %-9p %-10p with LONG_MIN, LONG_MAX
+	// printf(" %-9p %-10p ", (void *)LONG_MIN, (void *)LONG_MAX);
+	// printf("\n");
+	// ft_printf(" %-9p %-10p ", (void *)LONG_MIN, (void *)LONG_MAX);
+	// ft_printf("\n");
 
-	// std_ret = printf(" NULL %s NULL ", NULL);
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" NULL %s NULL ", NULL);
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 27: %-11p %-12p with INT_MIN, INT_MAX
+	// printf(" %-11p %-12p ", (void *)INT_MIN, (void *)INT_MAX);
+	// printf("\n");
+	// ft_printf(" %-11p %-12p ", (void *)INT_MIN, (void *)INT_MAX);
+	// ft_printf("\n");
 
-	// // %x
-	// std_ret = printf(" %x ", (unsigned long)LONG_MAX);
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %x ", (unsigned long)LONG_MAX);
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 28: %-13p %-14p with ULONG_MAX, -ULONG_MAX
+	// printf(" %-13p %-14p ", (void *)ULONG_MAX, (void *)(-ULONG_MAX));
+	// printf("\n");
+	// ft_printf(" %-13p %-14p ", (void *)ULONG_MAX, (void *)(-ULONG_MAX));
+	// ft_printf("\n");
 
-	// std_ret = printf(" %x ", (unsigned long)LONG_MIN);
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %x ", (unsigned long)LONG_MIN);
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // // TEST 29: %-1p %-2p with 0, 0
+	// // printf(" %-1p %-2p ", (void *)0, (void *)0);
+	// // printf("\n");
+	// // ft_printf(" %-1p %-2p ", (void *)0, (void *)0);
+	// // ft_printf("\n");
 
-	// std_ret = printf(" %x ", UINT_MAX);
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %x ", UINT_MAX);
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 1: %#x with 0
+	// printf(" %#x ", 0);
+	// printf("\n");
+	// ft_printf(" %#x ", 0);
+	// ft_printf("\n");
 
-	// std_ret = printf(" %x ", (unsigned long)ULONG_MAX);
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %x ", (unsigned long)ULONG_MAX);
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 25: %#x with LONG_MIN
+	// printf(" %#x ", (unsigned long)LONG_MIN);
+	// printf("\n");
+	// ft_printf(" %#x ", (unsigned long)LONG_MIN);
+	// ft_printf("\n");
 
-	// std_ret = printf(" %x ", (unsigned long long)9223372036854775807LL);
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %x ", (unsigned long long)9223372036854775807LL);
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
-
-	// std_ret = printf(" %x %x %x %x %x %x %x",
-	// 	INT_MAX, INT_MIN, (int)LONG_MAX, (int)LONG_MIN,
-	// 	(int)ULONG_MAX, 0, -42);
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %x %x %x %x %x %x %x",
-	// 	INT_MAX, INT_MIN, (int)LONG_MAX, (int)LONG_MIN,
-	// 	(int)ULONG_MAX, 0, -42);
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
-
-	// // %%
-	// std_ret = printf(" %%  %%  %% ");
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %%  %%  %% ");
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
-
-	// std_ret = printf(" %%   %%   %% ");
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf(" %%   %%   %% ");
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
-
-	// std_ret = printf("%% %%");
-	// printf("← printf ret = %d\n", std_ret);
-	// ft_ret = ft_printf("%% %%");
-	// printf("← ft_printf ret = %d\n\n", ft_ret);
+	// // TEST 29: multiple %#x with various values
+	// printf(" %#x %#x %#x %#x %#x %#x %#x", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	// printf("\n");
+	// ft_printf(" %#x %#x %#x %#x %#x %#x %#x", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	// ft_printf("\n");
 
 	return (0);
 }
+
+// cc -fsanitize=address -Iinclude -Ilibft main.c libftprintf.a -o a.out

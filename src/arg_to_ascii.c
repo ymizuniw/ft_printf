@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:53:22 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 03:03:20 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 08:32:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char *str_convert(const char *s)
 {
 	if (!s)
-		return (ft_strndup("(null)", 6));
+		return (ft_strndup("(null)", 1));
 	return (ft_strdup(s));
 }
 
