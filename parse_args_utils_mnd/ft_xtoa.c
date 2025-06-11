@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:29:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 12:37:47 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:00:20 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*base_is(t_bool is_upper)
+static const char	*base_is(t_bool is_upper)
 {
 	const char	*base;
 

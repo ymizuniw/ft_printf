@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:59:26 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 12:33:54 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:10:34 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	txt_token_len(const char *fmt, int *local_index)
 {
 	while (fmt[*local_index] && fmt[*local_index] != '%')
-		*local_index++;
+		(*local_index)++;
 	return (*local_index);
 }
 
@@ -25,7 +25,7 @@ static int	conv_token_len(const char *fmt, int *local_index, va_list aq)
 	char	spec;
 	int		ret_len;
 
-	*local_index++;
+	(*local_index)++;
 	spec = fmt[*local_index];
 	if (spec == '%')
 		return (1);
@@ -47,7 +47,7 @@ static int	get_token_content_len(const char *fmt, va_list aq)
 	local_index = 0;
 	ret_len = 0;
 	if (fmt[local_index] != '%')
-		return (txt_token_len);
+		return (txt_token_len(fmt, &local_index));
 	else if (fmt[local_index] == '%' && ft_is_spec(fmt[local_index + 1]))
 		return (conv_token_len(fmt, &local_index, aq));
 	else
