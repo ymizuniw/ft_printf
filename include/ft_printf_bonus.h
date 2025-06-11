@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 12:52:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 13:55:15 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@
 #  define BOOL_H
 #  define TRUE 1
 #  define FALSE 0
+
+#ifndef TEST_MALLOC_H
+#define TEST_MALLOC_H
+
+#include <stdlib.h>
+#include <stdio.h>
+
+// グローバルに呼び出しカウンタと失敗トリガ
+extern size_t g_malloc_count;
+extern size_t g_malloc_fail_at;
+
+void	*test_malloc(size_t size);
+
+// malloc マクロを置換
+#define malloc(size) test_malloc(size)
+
+#endif
+
 
 typedef int			t_bool;
 
