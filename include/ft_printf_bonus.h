@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 15:35:38 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 15:41:12 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 #  define BOOL_H
 #  define TRUE 1
 #  define FALSE 0
+
 typedef int	t_bool;
+
 #endif
 
 // token type separation
