@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:44:16 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 14:28:10 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/11 21:26:25 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	ft_printf(const char *format, ...)
 	if (!head)
 	{
 		va_end(ap);
+		
 		return (-1);
 	}
 	if (!parse_args(head, ap))
