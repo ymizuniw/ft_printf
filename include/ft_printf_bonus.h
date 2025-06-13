@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/13 06:58:19 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:22:38 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void				initialize_format(t_format *f);
 void				free_token(void *ptr);
 // parse_args
 t_bool				parse_args(t_list *tokens, va_list ap);
+char				*arg_to_spec(t_format *f, va_list ap, t_bool *arg_is_null);
 t_bool				ft_is_spec(const char c);
 
 // parse_args_utils

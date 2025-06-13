@@ -59,6 +59,7 @@ BONUS_SRCS := \
 	parse_args_utils/ft_utoa.c \
 	parse_args_utils/ft_xtoa.c \
 	parse_args/parse_args.c \
+	parse_args/arg_to_spec.c \
 	tokenize/init_free_token.c \
 	tokenize/tokenize_format.c \
 	apply_format/apply_format.c \

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 14:19:41 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/13 08:08:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/13 13:37:50 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,10 @@ void	manage_flag_spec(t_format *f)
 
 static void	manage_char_spec(t_format *f)
 {
-	// if (f->spec == 's')
 	if (f->spec == 's' && f->precision_on && f->precision == 0)
 		f->flag_minus = FALSE;
 	f->flag_plus = FALSE;
 	f->flag_space = FALSE;
 	f->flag_hash = FALSE;
 	f->flag_zero = FALSE;
-	// }
-	// else
-	// {
-	// 	f->flag_plus = FALSE;
-	// 	f->flag_space = FALSE;
-	// 	f->flag_hash = FALSE;
-	// 	f->flag_zero = FALSE;
-	// }
 }

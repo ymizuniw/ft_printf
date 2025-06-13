@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:18:35 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/13 11:15:05 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/13 13:39:45 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f,
 	else
 		lens->arg = ft_strlen((const char *)token->parsed_arg);
 	lens->precised = set_count_precision(f, lens->arg);
-	// if (f->spec == 's')
-	// 	lens->total = lens->prefix + lens->sign + lens->precised;
-	// else
-		lens->total = lens->prefix + lens->sign + lens->precised;
+	lens->total = lens->prefix + lens->sign + lens->precised;
 	lens->pad = set_count_pad(f, lens);
 	parts->prefix_len = lens->prefix;
 	parts->sign_len = lens->sign;
@@ -88,13 +85,10 @@ static char	*apply_precision(t_format *f, char *arg, t_lens *lens)
 	if (f->spec == 's')
 	{
 		len = ft_strlen(arg);
-		if (f->precision_on)
-		{
-			if (f->precision == 0)
-				return (ft_strdup(""));
-			if (lens->arg > f->precision)
-				return (ft_strndup((const char *)arg, f->precision));
-		}
+		if (f->precision_on && len > f->precision)
+			return (ft_strndup((const char *)arg, f->precision));
+		else if (f->precision_on && len <= f->precision)
+			return (ft_strndup((const char *)arg, len));
 		return (ft_strdup((const char *)arg));
 	}
 	else
