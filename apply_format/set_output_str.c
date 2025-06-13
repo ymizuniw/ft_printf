@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:03:38 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 10:06:14 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/13 08:06:07 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	args_output(char *output_str, size_t *buf_index, t_parts_out *parts,
 	}
 	if (parts->precised_arg)
 	{
-		ft_memcpy(output_str + *buf_index, parts->precised_arg, lens->prec);
-		*buf_index += lens->prec;
+		ft_memcpy(output_str + *buf_index, parts->precised_arg, lens->precised);
+		*buf_index += lens->precised;
 	}
 	if (lens->pad_pos == BACK)
 	{

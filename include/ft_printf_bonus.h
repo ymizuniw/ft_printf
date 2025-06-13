@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:08:08 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 15:48:15 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/13 06:58:19 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #  define TRUE 1
 #  define FALSE 0
 
-typedef int	t_bool;
+typedef int			t_bool;
 
 # endif
 
@@ -43,9 +43,9 @@ typedef struct s_format
 	t_bool			flag_space;
 	t_bool			flag_hash;
 	t_bool			width_from_arg;
-	int				width;
+	size_t			width;
 	t_bool			prec_from_arg;
-	int				precision;
+	size_t			precision;
 	t_bool			precision_on;
 	t_bool			is_negative;
 	char			spec;
@@ -77,7 +77,7 @@ typedef struct s_lens
 	size_t			prefix;
 	size_t			sign;
 	size_t			arg;
-	size_t			prec;
+	size_t			precised;
 	size_t			pad;
 	size_t			total;
 }					t_lens;
@@ -116,6 +116,7 @@ void				initialize_format(t_format *f);
 void				free_token(void *ptr);
 // parse_args
 t_bool				parse_args(t_list *tokens, va_list ap);
+t_bool				ft_is_spec(const char c);
 
 // parse_args_utils
 char				*ft_ctoa(char c);

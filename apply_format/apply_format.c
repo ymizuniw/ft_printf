@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:18:35 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 13:49:04 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/13 11:15:05 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	initialize_len_and_parts(t_lens *lens, t_parts_out *parts)
 	lens->prefix = 0;
 	lens->sign = 0;
 	lens->arg = 0;
-	lens->prec = lens->arg;
+	lens->precised = lens->arg;
 	lens->total = 0;
 	lens->pad = 0;
 	parts->prefix_len = 0;
@@ -62,16 +62,19 @@ static t_bool	set_lens(t_lens *lens, t_token *token, t_format *f,
 	if (f->spec == 'c' && token->parsed_arg[0] == '\0')
 	{
 		lens->arg = 1;
-		lens->prec = 1;
+		lens->precised = 1;
 	}
 	else
 		lens->arg = ft_strlen((const char *)token->parsed_arg);
-	lens->prec = set_count_precision(f, lens->arg);
-	lens->total = lens->prefix + lens->sign + lens->prec;
+	lens->precised = set_count_precision(f, lens->arg);
+	// if (f->spec == 's')
+	// 	lens->total = lens->prefix + lens->sign + lens->precised;
+	// else
+		lens->total = lens->prefix + lens->sign + lens->precised;
 	lens->pad = set_count_pad(f, lens);
 	parts->prefix_len = lens->prefix;
 	parts->sign_len = lens->sign;
-	parts->prec_len = lens->prec;
+	parts->prec_len = lens->precised;
 	parts->pad_len = lens->pad;
 	return (TRUE);
 }
@@ -80,26 +83,29 @@ static char	*apply_precision(t_format *f, char *arg, t_lens *lens)
 {
 	char	*res;
 	int		num_zeros;
+	size_t	len;
 
-	res = malloc(lens->prec + 1);
-	if (!res)
-		return (NULL);
-	ft_memset(res, 0, lens->prec + 1);
 	if (f->spec == 's')
 	{
-		if (f->precision_on && f->precision == 0)
-			res[0] = '\0';
-		else
+		len = ft_strlen(arg);
+		if (f->precision_on)
 		{
-			ft_strlcpy(res, arg, lens->prec + 1);
+			if (f->precision == 0)
+				return (ft_strdup(""));
+			if (lens->arg > f->precision)
+				return (ft_strndup((const char *)arg, f->precision));
 		}
+		return (ft_strdup((const char *)arg));
 	}
 	else
 	{
-		num_zeros = lens->prec - lens->arg;
+		num_zeros = lens->precised - lens->arg;
+		res = malloc(lens->precised + 1);
+		if (!res)
+			return (NULL);
 		ft_memset(res, '0', num_zeros);
 		ft_strlcpy(res + num_zeros, arg, lens->arg + 1);
+		res[lens->precised] = '\0';
+		return (res);
 	}
-	res[lens->prec] = '\0';
-	return (res);
 }

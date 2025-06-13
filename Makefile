@@ -86,6 +86,7 @@ $(NAME): $(OBJS)
 
 bonus: $(BONUS_OBJS)
 	@$(MAKE) -C $(LIBFT_DIR) bonus
+	@rm -f $(NAME)
 	@cp $(LIBFT_DIR)/libft.a temp_libft.a
 	@$(AR) x temp_libft.a > /dev/null
 	@$(AR) $(ARFLAGS) $(NAME) $^ *.o

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:37:56 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 12:40:21 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/13 11:17:19 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,25 @@ size_t	set_count_precision(t_format *f, size_t arg_len)
 	if (f->spec == 'd' || f->spec == 'i' || f->spec == 'x' || f->spec == 'X'
 		|| f->spec == 'u')
 	{
-		if (f->precision_on && (size_t)f->precision > arg_len)
-			num_zero = (size_t)f->precision - arg_len;
+		if (f->precision_on && f->precision > arg_len)
+			num_zero = f->precision - arg_len;
 		return (num_zero + arg_len);
 	}
 	else if (f->spec == 's')
 	{
-		if (f->precision_on && (size_t)f->precision < arg_len)
-			return ((size_t)f->precision);
-		else
-			return (arg_len);
+		// if (f->precision_on && f->precision == 0 && f->width < arg_len)
+		// 	return (f->width);
+		// else if (f->precision_on && (f->precision < f->width && f->width < arg_len))
+		// 	return (f->precision);
+		// else
+		// 	return (arg_len);
+	if (!f->precision_on)
+		return (arg_len);
+	if (f->precision == 0)
+		return (0);
+	if (f->precision < arg_len)
+		return (f->precision);
+	return (arg_len);
 	}
 	return (arg_len);
 }

@@ -6,17 +6,19 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 05:07:17 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/11 21:20:46 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/06/12 23:01:07 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-static int	output_token_conv(t_token *token)
+static int	output_token_conv(t_token *token, t_bool *fmt_err_flag)
 {
 	char	*out_str;
 	int		out_len;
 
+	if (token->format->spec == 0)
+		*fmt_err_flag = TRUE;
 	out_str = apply_format(token, token->format);
 	if (!out_str)
 		return (-1);
@@ -36,19 +38,23 @@ int	output_list(t_list *node)
 	t_token	*token;
 	int		out_len;
 	int		total_len;
+	t_bool	fmt_err_flag;
 
 	total_len = 0;
+	fmt_err_flag = FALSE;
 	while (node)
 	{
 		token = (t_token *)node->content;
 		if (token->type == TXT)
 			out_len = output_token_txt(token);
 		else if (token->type == CONV && token->format)
-			out_len = output_token_conv(token);
+			out_len = output_token_conv(token, &fmt_err_flag);
 		if (out_len < 0)
 			return (-1);
 		total_len += out_len;
 		node = node->next;
 	}
+	if (fmt_err_flag)
+		return (-1);
 	return (total_len);
 }
