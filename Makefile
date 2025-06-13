@@ -10,7 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-# ─── コンパイル/リンク設定 ─────────────────────
 NAME        := libftprintf.a
 CC          := cc
 CFLAGS      := -Wall -Wextra -Werror -g
@@ -18,13 +17,11 @@ AR          := ar
 ARFLAGS     := rcs
 RM          := rm -f
 
-# ─── ディレクトリ定義 ─────────────────────
 SRC_DIR     := src
 INC_DIR     := include
 LIBFT_DIR   := libft
 INC         := -I$(INC_DIR) -I$(LIBFT_DIR)
 
-# ─── Mandatoryソース一覧（明示） ─────────────
 MAND_SRCS := \
 	parse_args_utils_mnd/ft_ctoa.c \
 	parse_args_utils_mnd/ft_ptoa.c \
@@ -42,7 +39,6 @@ MAND_SRCS := \
 	src/destruct_tokens.c \
 	src/ft_is_spec.c
 
-# ─── Bonusソース一覧（明示） ───────────────
 BONUS_SRCS := \
 	parse_format/manage_flag_conflict.c \
 	parse_format/manage_flag_spec.c \
@@ -69,11 +65,9 @@ BONUS_SRCS := \
 	output/output_token.c \
 	ft_printf_bonus.c
 
-# ─── Objectファイル一覧 ───────────────────────
 OBJS        := $(MAND_SRCS:.c=.o)
 BONUS_OBJS  := $(BONUS_SRCS:.c=.o)
 
-# ─── ルール定義 ──────────────────────────────
 .PHONY: all bonus clean fclean re
 
 all: $(NAME)
