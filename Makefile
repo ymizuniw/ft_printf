@@ -23,47 +23,47 @@ LIBFT_DIR   := libft
 INC         := -I$(INC_DIR) -I$(LIBFT_DIR)
 
 MAND_SRCS := \
-	parse_args_utils_mnd/ft_ctoa.c \
-	parse_args_utils_mnd/ft_ptoa.c \
-	parse_args_utils_mnd/ft_utoa.c \
-	parse_args_utils_mnd/ft_xtoa.c \
-	parse_args_utils_mnd/ft_is_upper.c \
-	src/ft_printf.c \
-	src/initialize_and_alloc_tokens.c \
-	src/set_content_len.c \
-	src/set_token_content.c \
-	src/arg_to_ascii.c \
-	src/adjust_index.c \
-	src/output_tokens.c \
-	src/get_token_error_free.c \
-	src/destruct_tokens.c \
-	src/ft_is_spec.c
+    mnd_src/parse_args_utils/ft_ctoa.c \
+    mnd_src/parse_args_utils/ft_ptoa.c \
+    mnd_src/parse_args_utils/ft_utoa.c \
+    mnd_src/parse_args_utils/ft_xtoa.c \
+    mnd_src/parse_args_utils/ft_is_upper.c \
+    mnd_src/ft_printf.c \
+    mnd_src/initialize_and_alloc_tokens.c \
+    mnd_src/set_content_len.c \
+    mnd_src/set_token_content.c \
+    mnd_src/arg_to_ascii.c \
+    mnd_src/adjust_index.c \
+    mnd_src/output_tokens.c \
+    mnd_src/get_token_error_free.c \
+    mnd_src/destruct_tokens.c \
+    mnd_src/ft_is_spec.c
 
 BONUS_SRCS := \
-	parse_format/manage_flag_conflict.c \
-	parse_format/manage_flag_spec.c \
-	parse_format/parse_flags.c \
-	parse_format/parse_format.c \
-	parse_format/parse_format_utils.c \
-	parse_format/parse_precision.c \
-	parse_format/parse_specifier.c \
-	parse_format/parse_width.c \
-	parse_args_utils/ft_ctoa.c \
-	parse_args_utils/ft_is_upper.c \
-	parse_args_utils/ft_itoa_abs.c \
-	parse_args_utils/ft_ptoa.c \
-	parse_args_utils/ft_utoa.c \
-	parse_args_utils/ft_xtoa.c \
-	parse_args/parse_args.c \
-	parse_args/arg_to_spec.c \
-	tokenize/init_free_token.c \
-	tokenize/tokenize_format.c \
-	apply_format/apply_format.c \
-	apply_format/set_count_utils.c \
-	apply_format/set_output_str.c \
-	output/output_list.c \
-	output/output_token.c \
-	ft_printf_bonus.c
+    bns_src/parse_format/manage_flag_conflict.c \
+    bns_src/parse_format/manage_flag_spec.c \
+    bns_src/parse_format/parse_flags.c \
+    bns_src/parse_format/parse_format.c \
+    bns_src/parse_format/parse_format_utils.c \
+    bns_src/parse_format/parse_precision.c \
+    bns_src/parse_format/parse_specifier.c \
+    bns_src/parse_format/parse_width.c \
+    bns_src/parse_args_utils/ft_ctoa.c \
+    bns_src/parse_args_utils/ft_is_upper.c \
+    bns_src/parse_args_utils/ft_itoa_abs.c \
+    bns_src/parse_args_utils/ft_ptoa.c \
+    bns_src/parse_args_utils/ft_utoa.c \
+    bns_src/parse_args_utils/ft_xtoa.c \
+    bns_src/parse_args/parse_args.c \
+    bns_src/parse_args/arg_to_spec.c \
+    bns_src/tokenize/init_free_token.c \
+    bns_src/tokenize/tokenize_format.c \
+    bns_src/apply_format/apply_format.c \
+    bns_src/apply_format/set_count_utils.c \
+    bns_src/apply_format/set_output_str.c \
+    bns_src/output/output_list.c \
+    bns_src/output/output_token.c \
+    bns_src/ft_printf_bonus.c
 
 OBJS        := $(MAND_SRCS:.c=.o)
 BONUS_OBJS  := $(BONUS_SRCS:.c=.o)
